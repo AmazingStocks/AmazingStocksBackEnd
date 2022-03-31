@@ -1,10 +1,10 @@
 
 
+import chalice
 from flask import Flask
 from yahoo_fin import stock_info as si
-from chalice import Chalice
+app = Flask(__name__)
 
-app = Chalice(__name__)
 
 @app.route("/")
 def hello_world():

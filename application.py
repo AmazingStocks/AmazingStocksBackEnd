@@ -19,11 +19,14 @@ aws_auth = AWSCognitoAuthentication(application)
 
 @application.route("/")
 def hello_world():
-    return "<p>Hello, World!</p>"
+    return {
+        "message" : "Hello World"
+    }
 
 @application.route("/getallSymbols", methods=["GET"])
 @aws_auth.authentication_required
 def getAllSymbols():
+    
     lst = si.tickers_nifty50()
     ret = dict()
     ret['symbols'] = lst
@@ -35,4 +38,4 @@ if __name__ == "__main__":
     # Setting debug to True enables debug output. This line should be
     # removed before deploying a production app.
     application.debug = True
-    application.run()
+    application.run(host='0.0.0.0', port=5000, debug=True, threaded=True)

@@ -1,0 +1,61 @@
+import backtrader as bt
+import yfinance as yf
+import datetime
+import matplotlib
+
+from MeanReversionStrategy import MeanReversionStrategy
+from MovingAverageCrossoverStrategy import MovingAverageCrossoverStrategy
+matplotlib.use("Agg")  # Use Agg backend for non-GUI environments
+import matplotlib.pyplot as plt
+
+# Download Historical Data from Yahoo Finance
+def get_data(symbol, period="2y", interval="1d"):
+    data = yf.download(symbol, period=period, interval=interval, multi_level_index=False)
+    data = data.rename(columns={
+        "Open": "open",
+        "High": "high",
+        "Low": "low",
+        "Close": "close",
+        "Volume": "volume"
+    })
+    # data.columns = data.columns.droplevel(0) # Drop the first level (Ticker Names)
+    return data
+
+# Backtest Function
+def backtest(symbol):
+    cerebro = bt.Cerebro()
+    cerebro.addstrategy(MovingAverageCrossoverStrategy)
+
+    # Load Data
+    df = get_data(symbol)
+    data = bt.feeds.PandasData(dataname=df)
+
+    # Add data to Cerebro
+    cerebro.adddata(data)
+    cerebro.broker.set_cash(100000)  # Set initial capital
+    cerebro.broker.setcommission(commission=0.001)  # 0.1% commission
+    cerebro.addsizer(bt.sizers.FixedSize, stake=10)  # Number of shares per trade
+
+    print(f"Starting Portfolio Value: {cerebro.broker.getvalue():.2f}")
+    cerebro.run()
+    print(f"Final Portfolio Value: {cerebro.broker.getvalue():.2f}")
+
+    # Save the plot as an image file instead of displaying it
+    fig = cerebro.plot()[0][0]
+    fig.savefig(f"backtest_plot_{symbol}.png")  # Save as PNG file
+
+def main(filepath):
+    tickers = load_tickers(filepath)
+    for symbol in tickers:
+        print(f"@@@@@  {symbol} @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+        backtest(symbol)
+    
+# Load tickers from a file
+def load_tickers(file_path):
+    with open(file_path, "r") as file:
+        tickers = [line.strip() for line in file.readlines()]
+    return tickers
+
+# Run Backtest for Reliance Industries (NSE)
+if __name__ == "__main__":
+    main("tickers.txt")

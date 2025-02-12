@@ -1,8 +1,9 @@
 import backtrader as bt
 from sklearn.neighbors import KNeighborsClassifier
 import numpy as np
+from .BaseStrategy import BaseStrategy  # new import
 
-class KNNMovingAverageCrossoverStrategy(bt.Strategy):
+class KNNMovingAverageCrossoverStrategy(BaseStrategy):  # changed inheritance
     params = (
         ("short_period", 50),
         ("long_period", 200),
@@ -31,9 +32,9 @@ class KNNMovingAverageCrossoverStrategy(bt.Strategy):
                 # Exit condition: Short MA crosses below Long MA or KNN predicts downward movement
                 if self.sma_short[0] < self.sma_long[0] or prediction < 0:
                     self.close()
-                    print(f"SELL: {self.data.datetime.date(0)} | Price: {self.data.close[0]}")
+                    self.log(f"SELL: Price: {self.data.close[0]}")
             else:
                 # Buy condition: Short MA crosses above Long MA or KNN predicts upward movement
                 if self.sma_short[0] > self.sma_long[0] or prediction > 0:
                     self.buy()
-                    print(f"BUY: {self.data.datetime.date(0)} | Price: {self.data.close[0]}")
+                    self.log(f"BUY: Price: {self.data.close[0]}")

@@ -1,8 +1,8 @@
 # Define Trading Strategy
 import backtrader as bt
+from .BaseStrategy import BaseStrategy  # new import
 
-
-class MeanReversionStrategy(bt.Strategy):
+class MeanReversionStrategy(BaseStrategy):  # changed inheritance
     params = (
         ("boll_period", 20),
         ("rsi_period", 14),
@@ -21,10 +21,10 @@ class MeanReversionStrategy(bt.Strategy):
             # Exit conditions: Price returns to the mean (SMA20)
             if self.data.close[0] > self.bb.lines.mid[0]:
                 self.close()
-                print(f"SELL: {self.data.datetime.date(0)} | Price: {self.data.close[0]}")
+                self.log(f"SELL: Price: {self.data.close[0]}")
 
         else:
             # Buy when price touches lower Bollinger Band & RSI < 30
             if self.data.close[0] <= self.bb.lines.bot[0] and self.rsi[0] < self.params.rsi_lower:
                 self.buy()
-                print(f"BUY: {self.data.datetime.date(0)} | Price: {self.data.close[0]}")
+                self.log(f"BUY: Price: {self.data.close[0]}")

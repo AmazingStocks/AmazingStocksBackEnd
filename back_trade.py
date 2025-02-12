@@ -3,6 +3,7 @@ import yfinance as yf
 import datetime
 import matplotlib
 
+from tradingstrategies.KNNMovingAverageCrossoverStrategy import KNNMovingAverageCrossoverStrategy
 from tradingstrategies.MeanReversionStrategy import MeanReversionStrategy
 from tradingstrategies.MovingAverageCrossoverStrategy import MovingAverageCrossoverStrategy
 matplotlib.use("Agg")  # Use Agg backend for non-GUI environments
@@ -24,7 +25,7 @@ def get_data(symbol, period="2y", interval="1d"):
 # Backtest Function
 def backtest(symbol):
     cerebro = bt.Cerebro()
-    cerebro.addstrategy(MovingAverageCrossoverStrategy)
+    cerebro.addstrategy(MovingAverageCrossoverStrategy, 500)
 
     # Load Data
     df = get_data(symbol)
@@ -42,7 +43,7 @@ def backtest(symbol):
 
     # Save the plot as an image file instead of displaying it
     fig = cerebro.plot()[0][0]
-    fig.savefig(f"backtest_plot_{symbol}.png")  # Save as PNG file
+    fig.savefig(f"backtest_images/backtest_plot_{symbol}.png")  # Save as PNG file
 
 def main(filepath):
     tickers = load_tickers(filepath)

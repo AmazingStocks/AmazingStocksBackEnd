@@ -10,7 +10,7 @@ matplotlib.use("Agg")  # Use Agg backend for non-GUI environments
 import matplotlib.pyplot as plt
 
 # Download Historical Data from Yahoo Finance
-def get_data(symbol, period="2y", interval="1d"):
+def get_data(symbol, period="1y", interval="1d"):
     data = yf.download(symbol, period=period, interval=interval, multi_level_index=False)
     data = data.rename(columns={
         "Open": "open",
@@ -58,4 +58,4 @@ def load_tickers(file_path):
 
 # Run Backtest for Reliance Industries (NSE)
 if __name__ == "__main__":
-    main("tickers.txt")
+    main("tickers_nse50.txt")

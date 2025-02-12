@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 
 profit = {}
 # Download Historical Data from Yahoo Finance
-def get_data(symbol, period="2y", interval="1d"):
+def get_data(symbol, period="5y", interval="1d"):
     data = yf.download(symbol, period=period, interval=interval, multi_level_index=False)
     data = data.rename(columns={
         "Open": "open",
@@ -47,7 +47,7 @@ def backtest(symbol):
 
     # Save the plot as an image file instead of displaying it
     fig = cerebro.plot()[0][0]
-    #fig.savefig(f"backtest_images/backtest_plot_{symbol}.png")  # Save as PNG file
+    fig.savefig(f"backtest_images/backtest_plot_{symbol}.png")  # Save as PNG file
 
 def main(filepath):
     tickers = load_tickers(filepath)
@@ -73,4 +73,4 @@ def load_tickers(file_path):
 
 # Run Backtest for Reliance Industries (NSE)
 if __name__ == "__main__":
-    main("tickers.txt")
+    main("tickers_backtest.txt")

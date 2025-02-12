@@ -3,8 +3,8 @@ import yfinance as yf
 import datetime
 import matplotlib
 
-from MeanReversionStrategy import MeanReversionStrategy
-from MovingAverageCrossoverStrategy import MovingAverageCrossoverStrategy
+from tradingstrategies.MeanReversionStrategy import MeanReversionStrategy
+from tradingstrategies.MovingAverageCrossoverStrategy import MovingAverageCrossoverStrategy
 matplotlib.use("Agg")  # Use Agg backend for non-GUI environments
 import matplotlib.pyplot as plt
 

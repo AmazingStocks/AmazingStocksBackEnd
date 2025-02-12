@@ -9,6 +9,7 @@ from tradingstrategies.MovingAverageCrossoverStrategy import MovingAverageCrosso
 matplotlib.use("Agg")  # Use Agg backend for non-GUI environments
 import matplotlib.pyplot as plt
 
+profit = {}
 # Download Historical Data from Yahoo Finance
 def get_data(symbol, period="2y", interval="1d"):
     data = yf.download(symbol, period=period, interval=interval, multi_level_index=False)
@@ -25,7 +26,7 @@ def get_data(symbol, period="2y", interval="1d"):
 # Backtest Function
 def backtest(symbol):
     cerebro = bt.Cerebro()
-    cerebro.addstrategy(MovingAverageCrossoverStrategy, 500)
+    cerebro.addstrategy(MovingAverageCrossoverStrategy, chk_last_weeks=999, symbol=symbol)
 
     # Load Data
     df = get_data(symbol)
@@ -37,9 +38,12 @@ def backtest(symbol):
     cerebro.broker.setcommission(commission=0.001)  # 0.1% commission
     cerebro.addsizer(bt.sizers.FixedSize, stake=10)  # Number of shares per trade
 
-    print(f"Starting Portfolio Value: {cerebro.broker.getvalue():.2f}")
+    starting_capital = cerebro.broker.getvalue()
+    print(f"Starting Portfolio Value: {starting_capital:.2f}")
     cerebro.run()
-    print(f"Final Portfolio Value: {cerebro.broker.getvalue():.2f}")
+    ending_capital = cerebro.broker.getvalue()
+    print(f"Final Portfolio Value: {ending_capital:.2f}")
+    profit[symbol] = ending_capital - starting_capital
 
     # Save the plot as an image file instead of displaying it
     fig = cerebro.plot()[0][0]
@@ -48,8 +52,18 @@ def backtest(symbol):
 def main(filepath):
     tickers = load_tickers(filepath)
     for symbol in tickers:
-        print(f"@@@@@  {symbol} @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
         backtest(symbol)
+        
+    print("+++++++++ profitable symbols ++++++++++++++")
+    for key, value in profit.items():
+        if value > 0:
+            print(key, value)
+    
+    print("------- loss making symbols ---------")
+    for key, value in profit.items():
+        if value < 0:
+            print(key, value)
+    
     
 # Load tickers from a file
 def load_tickers(file_path):

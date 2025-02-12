@@ -10,7 +10,8 @@ class MeanReversionStrategy(BaseStrategy):  # changed inheritance
         ("rsi_upper", 70),
     )
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         # Bollinger Bands
         self.bb = bt.indicators.BollingerBands(period=self.params.boll_period)
         # RSI Indicator
@@ -21,10 +22,8 @@ class MeanReversionStrategy(BaseStrategy):  # changed inheritance
             # Exit conditions: Price returns to the mean (SMA20)
             if self.data.close[0] > self.bb.lines.mid[0]:
                 self.close()
-                self.log(f"SELL: Price: {self.data.close[0]}")
 
         else:
             # Buy when price touches lower Bollinger Band & RSI < 30
             if self.data.close[0] <= self.bb.lines.bot[0] and self.rsi[0] < self.params.rsi_lower:
                 self.buy()
-                self.log(f"BUY: Price: {self.data.close[0]}")

@@ -2,8 +2,8 @@ import backtrader as bt
 
 class MovingAverageCrossoverStrategy(bt.Strategy):
     params = (
-        ("short_period", 50),
-        ("long_period", 200),
+        ("short_period", 20),
+        ("long_period", 100),
     )
 
     def __init__(self):

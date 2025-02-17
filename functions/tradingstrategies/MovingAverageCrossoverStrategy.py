@@ -15,6 +15,7 @@ class MovingAverageCrossoverStrategy(BaseStrategy):  # changed inheritance
         
 
     def next(self):
+        super().next()
         if self.position:
             # Exit condition: Short MA crosses below Long MA
             if self.sma_short[0] < self.sma_long[0]:

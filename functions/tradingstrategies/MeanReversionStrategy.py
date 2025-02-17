@@ -18,6 +18,7 @@ class MeanReversionStrategy(BaseStrategy):  # changed inheritance
         self.rsi = bt.indicators.RSI(period=self.params.rsi_period)
 
     def next(self):
+        super().next()
         if self.position:
             # Exit conditions: Price returns to the mean (SMA20)
             if self.data.close[0] > self.bb.lines.mid[0]:

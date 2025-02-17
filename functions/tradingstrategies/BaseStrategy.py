@@ -6,8 +6,8 @@ class BaseStrategy(bt.Strategy):
         self.chk_last_weeks = kwargs.get("chk_last_weeks", 999)
         self.symbol = kwargs.get("symbol", "TCS.NS")
         # List to store signals as tuples: (date, signal type, price)
-        self.signals = []
-    
+        self.generated_signals = []
+        
     def log(self, txt):
         dt = self.datas[0].datetime.date(0)
         print(f"{dt} {txt}")
@@ -15,7 +15,12 @@ class BaseStrategy(bt.Strategy):
     def close(self, data=None, size=None, **kwargs):  
         # Get the current bar's date (converted to a Python date)
         current_date = self.data.datetime.date(0)      
-        self.signals.append((current_date, 'SELL', self.data.close[0]))
+        signal = {
+            "date": str(current_date),
+            "signal_type": "SELL",
+            "price": self.data.close[0]
+        }
+        self.generated_signals.append(signal)
         return super().close(data, size, **kwargs)
     
     def buy(self, data=None, size=None, price=None, plimit=None, exectype=None, 
@@ -23,7 +28,12 @@ class BaseStrategy(bt.Strategy):
             parent=None, transmit=True, **kwargs):
         # Get the current bar's date (converted to a Python date)
         current_date = self.data.datetime.date(0)
-        self.signals.append((current_date, 'BUY', self.data.close[0]))
+        signal = {
+            "date": str(current_date),
+            "signal_type": "BUY",
+            "price": self.data.close[0]
+        }
+        self.generated_signals.append(signal)
         return super().buy(data, size, price, plimit, exectype, valid, tradeid, oco, trailamount, trailpercent, parent, transmit, **kwargs)
     
     def stop(self):
@@ -31,12 +41,12 @@ class BaseStrategy(bt.Strategy):
         last_date = self.data.datetime.date(0)
         # Define the cutoff date as one week before the last date
         cutoff_date = last_date - dt.timedelta(weeks=self.chk_last_weeks)
-        if self.signals:            
-            last_signals = [signal for signal in self.signals if signal[0] >= cutoff_date]
-            if last_signals:
+        if self.generated_signals:            
+            self.last_signals = [signal for signal in self.generated_signals if dt.datetime.strptime(signal["date"], '%Y-%m-%d').date() >= cutoff_date]
+            if self.last_signals:
                 print(f"@@@@@@@  {self.symbol} @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
                 print(f"\nSignals in the last {self.chk_last_weeks} week:")
-                for signal in last_signals:
+                for signal in self.last_signals:
                     signal_date, signal_type, price = signal
                     print(f"Date: {signal_date}, Signal: {signal_type}, Price: {price}")
         

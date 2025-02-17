@@ -1,0 +1,165 @@
+[debug] [2025-02-14T09:34:53.599Z] ----------------------------------------------------------------------
+[debug] [2025-02-14T09:34:53.601Z] Command:       /usr/local/share/nvm/versions/node/v20.18.1/bin/node /home/codespace/nvm/current/bin/firebase init
+[debug] [2025-02-14T09:34:53.601Z] CLI Version:   13.31.1
+[debug] [2025-02-14T09:34:53.601Z] Platform:      linux
+[debug] [2025-02-14T09:34:53.602Z] Node Version:  v20.18.1
+[debug] [2025-02-14T09:34:53.602Z] Time:          Fri Feb 14 2025 09:34:53 GMT+0000 (Coordinated Universal Time)
+[debug] [2025-02-14T09:34:53.602Z] Env Overrides: GITHUB_API_URL, GITHUB_API_URL
+[debug] [2025-02-14T09:34:53.602Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-02-14T09:34:53.607Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-02-14T09:34:53.607Z] > authorizing via signed-in user (senapati.arnab@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /workspaces/AmazingStocksBackEnd
+
+Before we get started, keep in mind:
+
+  * You are currently outside your home directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2025-02-14T09:35:17.804Z] Checked if tokens are valid: true, expires at: 1739528878534
+[debug] [2025-02-14T09:35:17.804Z] Checked if tokens are valid: true, expires at: 1739528878534
+[debug] [2025-02-14T09:35:17.806Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2025-02-14T09:35:18.047Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2025-02-14T09:35:18.048Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] i  Using project amazingstocks-9829a (AmazingStocks) 
+[info] 
+=== Firestore Setup
+[debug] [2025-02-14T09:35:19.701Z] Checked if tokens are valid: true, expires at: 1739528878534
+[debug] [2025-02-14T09:35:19.701Z] Checked if tokens are valid: true, expires at: 1739528878534
+[debug] [2025-02-14T09:35:19.702Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/firestore.googleapis.com [none]
+[debug] [2025-02-14T09:35:19.702Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/firestore.googleapis.com x-goog-quota-user=projects/amazingstocks-9829a
+[debug] [2025-02-14T09:35:19.927Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/firestore.googleapis.com 200
+[debug] [2025-02-14T09:35:19.928Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/firestore.googleapis.com [omitted]
+[debug] [2025-02-14T09:35:19.928Z] Checked if tokens are valid: true, expires at: 1739528878534
+[debug] [2025-02-14T09:35:19.929Z] Checked if tokens are valid: true, expires at: 1739528878534
+[debug] [2025-02-14T09:35:19.929Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/amazingstocks-9829a/databases/(default) [none]
+[debug] [2025-02-14T09:35:20.283Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/amazingstocks-9829a/databases/(default) 200
+[debug] [2025-02-14T09:35:20.284Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/amazingstocks-9829a/databases/(default) {"name":"projects/amazingstocks-9829a/databases/(default)","uid":"e5a0a4d0-819f-431f-870f-b89e04f29720","createTime":"2025-02-14T09:34:22.531271Z","updateTime":"2025-02-14T09:34:22.531271Z","locationId":"nam5","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2025-02-14T09:34:22.531271Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"s","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","etag":"IKLbiKXuwosDMMe9xYnuwosD"}
+[debug] [2025-02-14T09:35:20.284Z] database_type: FIRESTORE_NATIVE
+[debug] [2025-02-14T09:35:20.284Z] database_type: FIRESTORE_NATIVE
+[debug] [2025-02-14T09:35:20.285Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-02-14T09:35:20.285Z] > authorizing via signed-in user (senapati.arnab@gmail.com)
+[debug] [2025-02-14T09:35:20.285Z] [iam] checking project amazingstocks-9829a for permissions ["firebase.projects.get"]
+[debug] [2025-02-14T09:35:20.286Z] Checked if tokens are valid: true, expires at: 1739528878534
+[debug] [2025-02-14T09:35:20.286Z] Checked if tokens are valid: true, expires at: 1739528878534
+[debug] [2025-02-14T09:35:20.286Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/amazingstocks-9829a:testIamPermissions [none]
+[debug] [2025-02-14T09:35:20.286Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/amazingstocks-9829a:testIamPermissions x-goog-quota-user=projects/amazingstocks-9829a
+[debug] [2025-02-14T09:35:20.286Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/amazingstocks-9829a:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2025-02-14T09:35:20.514Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/amazingstocks-9829a:testIamPermissions 200
+[debug] [2025-02-14T09:35:20.515Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/amazingstocks-9829a:testIamPermissions {"permissions":["firebase.projects.get"]}
+[info] 
+[info] Firestore Security Rules allow you to define how and when to allow
+[info] requests. You can keep these rules in your project directory
+[info] and publish them with firebase deploy.
+[info] 
+[debug] [2025-02-14T09:35:28.211Z] Checked if tokens are valid: true, expires at: 1739528878534
+[debug] [2025-02-14T09:35:28.212Z] Checked if tokens are valid: true, expires at: 1739528878534
+[debug] [2025-02-14T09:35:28.212Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/amazingstocks-9829a/releases pageSize=10&pageToken=
+[debug] [2025-02-14T09:35:28.479Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/amazingstocks-9829a/releases 200
+[debug] [2025-02-14T09:35:28.480Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/amazingstocks-9829a/releases {"releases":[{"name":"projects/amazingstocks-9829a/releases/cloud.firestore","rulesetName":"projects/amazingstocks-9829a/rulesets/e90895b7-dd91-47a1-aeb0-33e41d1b1984","createTime":"2025-02-14T09:34:29.219002Z","updateTime":"2025-02-14T09:34:29.219002Z"}]}
+[debug] [2025-02-14T09:35:28.480Z] Found ruleset: projects/amazingstocks-9829a/rulesets/e90895b7-dd91-47a1-aeb0-33e41d1b1984
+[debug] [2025-02-14T09:35:28.480Z] Checked if tokens are valid: true, expires at: 1739528878534
+[debug] [2025-02-14T09:35:28.481Z] Checked if tokens are valid: true, expires at: 1739528878534
+[debug] [2025-02-14T09:35:28.481Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/amazingstocks-9829a/rulesets/e90895b7-dd91-47a1-aeb0-33e41d1b1984 [none]
+[debug] [2025-02-14T09:35:28.608Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/amazingstocks-9829a/rulesets/e90895b7-dd91-47a1-aeb0-33e41d1b1984 200
+[debug] [2025-02-14T09:35:28.609Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/amazingstocks-9829a/rulesets/e90895b7-dd91-47a1-aeb0-33e41d1b1984 [omitted]
+[info] 
+[info] Firestore indexes allow you to perform complex queries while
+[info] maintaining performance that scales with the size of the result
+[info] set. You can keep index definitions in your project directory
+[info] and publish them with firebase deploy.
+[info] 
+[debug] [2025-02-14T09:35:32.202Z] Checked if tokens are valid: true, expires at: 1739528878534
+[debug] [2025-02-14T09:35:32.203Z] Checked if tokens are valid: true, expires at: 1739528878534
+[debug] [2025-02-14T09:35:32.204Z] Checked if tokens are valid: true, expires at: 1739528878534
+[debug] [2025-02-14T09:35:32.204Z] Checked if tokens are valid: true, expires at: 1739528878534
+[debug] [2025-02-14T09:35:32.204Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/amazingstocks-9829a/databases/(default)/collectionGroups/-/indexes [none]
+[debug] [2025-02-14T09:35:32.207Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/amazingstocks-9829a/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* [none]
+[debug] [2025-02-14T09:35:32.520Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/amazingstocks-9829a/databases/(default)/collectionGroups/-/indexes 200
+[debug] [2025-02-14T09:35:32.521Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/amazingstocks-9829a/databases/(default)/collectionGroups/-/indexes {}
+[debug] [2025-02-14T09:35:33.000Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/amazingstocks-9829a/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* 200
+[debug] [2025-02-14T09:35:33.001Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/amazingstocks-9829a/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* {"fields":[{"name":"projects/amazingstocks-9829a/databases/(default)/collectionGroups/__default__/fields/*","indexConfig":{"indexes":[{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"ASCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"DESCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","arrayConfig":"CONTAINS"}],"state":"READY"}]}}]}
+[info] 
+=== Functions Setup
+[debug] [2025-02-14T09:35:33.003Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-02-14T09:35:33.003Z] > authorizing via signed-in user (senapati.arnab@gmail.com)
+[debug] [2025-02-14T09:35:33.003Z] [iam] checking project amazingstocks-9829a for permissions ["firebase.projects.get"]
+[debug] [2025-02-14T09:35:33.003Z] Checked if tokens are valid: true, expires at: 1739528878534
+[debug] [2025-02-14T09:35:33.004Z] Checked if tokens are valid: true, expires at: 1739528878534
+[debug] [2025-02-14T09:35:33.004Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/amazingstocks-9829a:testIamPermissions [none]
+[debug] [2025-02-14T09:35:33.004Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/amazingstocks-9829a:testIamPermissions x-goog-quota-user=projects/amazingstocks-9829a
+[debug] [2025-02-14T09:35:33.004Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/amazingstocks-9829a:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2025-02-14T09:35:33.222Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/amazingstocks-9829a:testIamPermissions 200
+[debug] [2025-02-14T09:35:33.222Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/amazingstocks-9829a:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2025-02-14T09:35:33.223Z] Checked if tokens are valid: true, expires at: 1739528878534
+[debug] [2025-02-14T09:35:33.223Z] Checked if tokens are valid: true, expires at: 1739528878534
+[debug] [2025-02-14T09:35:33.223Z] Checked if tokens are valid: true, expires at: 1739528878534
+[debug] [2025-02-14T09:35:33.223Z] Checked if tokens are valid: true, expires at: 1739528878534
+[debug] [2025-02-14T09:35:33.224Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/cloudfunctions.googleapis.com [none]
+[debug] [2025-02-14T09:35:33.224Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/amazingstocks-9829a
+[debug] [2025-02-14T09:35:33.226Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/runtimeconfig.googleapis.com [none]
+[debug] [2025-02-14T09:35:33.226Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/amazingstocks-9829a
+[debug] [2025-02-14T09:35:33.605Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/runtimeconfig.googleapis.com 200
+[debug] [2025-02-14T09:35:33.606Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2025-02-14T09:35:33.607Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/cloudfunctions.googleapis.com 200
+[debug] [2025-02-14T09:35:33.607Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/cloudfunctions.googleapis.com [omitted]
+[info] Let's create a new codebase for your functions.
+[info] A directory corresponding to the codebase will be created in your project
+[info] with sample code pre-configured.
+
+[info] See https://firebase.google.com/docs/functions/organize-functions for
+[info] more information on organizing your functions using codebases.
+
+[info] Functions can be deployed with firebase deploy.
+
+[info] ✔  Wrote functions/requirements.txt 
+[info] ✔  Wrote functions/.gitignore 
+[info] ✔  Wrote functions/main.py 
+[debug] [2025-02-14T09:36:00.588Z] Running command with virtualenv: command=., args=["\"/workspaces/AmazingStocksBackEnd/functions/venv/bin/activate\"","&&","pip3","install","--upgrade","pip"]
+[debug] [2025-02-14T09:36:02.578Z] Running command with virtualenv: command=., args=["\"/workspaces/AmazingStocksBackEnd/functions/venv/bin/activate\"","&&","python3.12","-m","pip","install","-r","requirements.txt"]
+[info] 
+=== Apphosting Setup
+[debug] [2025-02-14T09:36:12.665Z] Checked if tokens are valid: true, expires at: 1739528878534
+[debug] [2025-02-14T09:36:12.666Z] Checked if tokens are valid: true, expires at: 1739528878534
+[debug] [2025-02-14T09:36:12.666Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/amazingstocks-9829a/billingInfo [none]
+[debug] [2025-02-14T09:36:12.824Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/amazingstocks-9829a/billingInfo 200
+[debug] [2025-02-14T09:36:12.825Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/amazingstocks-9829a/billingInfo {"name":"projects/amazingstocks-9829a/billingInfo","projectId":"amazingstocks-9829a","billingAccountName":"billingAccounts/015D2B-10A9F8-0140A2","billingEnabled":true}
+[info] i  Writing default settings to apphosting.yaml... 
+[info] ✔  Wrote apphosting.yaml 
+[info] ✔  Create a new App Hosting backend with `firebase apphosting:backends:create` 
+[info] 
+=== Emulators Setup
+[info] i  apphosting: Initializing Emulator {"metadata":{"emulator":{"name":"apphosting"},"message":"Initializing Emulator"}}
+[warn] ⚠  Failed to auto-detect your project's start command. Consider manually setting the start command by setting `firebase.json#emulators.apphosting.startCommand` {"metadata":{"emulator":{"name":"apphosting"},"message":"Failed to auto-detect your project's start command. Consider manually setting the start command by setting `firebase.json#emulators.apphosting.startCommand`"}}
+[debug] [2025-02-14T09:37:55.265Z] Checked if tokens are valid: true, expires at: 1739528878534
+[debug] [2025-02-14T09:37:55.266Z] Checked if tokens are valid: true, expires at: 1739528878534
+[debug] [2025-02-14T09:37:55.266Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2025-02-14T09:37:55.506Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2025-02-14T09:37:55.506Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] Wrote secrets as environment variables to apphosting.local.yaml.
+[warn] ⚠  failed to export app hosting configs {"metadata":{"emulator":{"name":"apphosting"},"message":"failed to export app hosting configs"}}
+[debug] [2025-02-14T09:38:16.002Z] Error: ENOENT: no such file or directory, open '/workspaces/AmazingStocksBackEnd/app/apphosting.local.yaml'
+    at writeFileSync (node:fs:2367:20)
+    at store (/usr/local/share/nvm/versions/node/v20.18.1/lib/node_modules/firebase-tools/lib/apphosting/config.js:50:28)
+    at AppHostingYamlConfig.upsertFile (/usr/local/share/nvm/versions/node/v20.18.1/lib/node_modules/firebase-tools/lib/apphosting/yaml.js:64:28)
+    at exportConfig (/usr/local/share/nvm/versions/node/v20.18.1/lib/node_modules/firebase-tools/lib/apphosting/config.js:156:27)
+    at async apphosting (/usr/local/share/nvm/versions/node/v20.18.1/lib/node_modules/firebase-tools/lib/emulator/initEmulators.js:35:13)
+    at async doSetup (/usr/local/share/nvm/versions/node/v20.18.1/lib/node_modules/firebase-tools/lib/init/features/emulators.js:52:39)
+    at async init (/usr/local/share/nvm/versions/node/v20.18.1/lib/node_modules/firebase-tools/lib/init/index.js:41:9)
+[error] 
+[error] Error: An unexpected error has occurred.

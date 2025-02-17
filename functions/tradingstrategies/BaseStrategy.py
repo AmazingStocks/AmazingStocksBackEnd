@@ -43,10 +43,5 @@ class BaseStrategy(bt.Strategy):
         cutoff_date = last_date - dt.timedelta(weeks=self.chk_last_weeks)
         if self.generated_signals:            
             self.last_signals = [signal for signal in self.generated_signals if dt.datetime.strptime(signal["date"], '%Y-%m-%d').date() >= cutoff_date]
-            if self.last_signals:
-                print(f"@@@@@@@  {self.symbol} @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-                print(f"\nSignals in the last {self.chk_last_weeks} week:")
-                for signal in self.last_signals:
-                    signal_date, signal_type, price = signal
-                    print(f"Date: {signal_date}, Signal: {signal_type}, Price: {price}")
+           
         

@@ -6,6 +6,8 @@ from firebase_functions import https_fn
 from firebase_admin import initialize_app
 from flask import Flask
 
+import tradesignals
+
 # initialize_app()  # if needed
 app = Flask(__name__)
 
@@ -19,7 +21,7 @@ def about():
 
 @app.route('/tradesignals')
 def contact():
-	return 'Contact us at example@example.com'
+	return tradesignals.main("data/tickers_nse50.txt")
 
 @https_fn.on_request()
 def flask_app_entry(req: https_fn.Request) -> https_fn.Response:

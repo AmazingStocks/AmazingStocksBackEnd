@@ -68,5 +68,5 @@ def load_tickers(file_path):
 
 # Run Backtest for Reliance Industries (NSE)
 if __name__ == "__main__":
-    final_json = main("tickers_tmp.txt")
+    final_json = main("data/tickers_tmp.txt")
     print(final_json)

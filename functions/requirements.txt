@@ -3,7 +3,7 @@ firebase_functions~=0.1.0
 flask
 flask_awscognito
 backtrader 
-yfinance
+yfinance==0.2.54
 pandas 
 numpy 
 matplotlib

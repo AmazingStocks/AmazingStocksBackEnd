@@ -12,7 +12,7 @@ matplotlib.use("Agg")  # Use Agg backend for non-GUI environments
 import matplotlib.pyplot as plt
 
 # Download Historical Data from Yahoo Finance
-def get_data(symbol, period="5y", interval="1d"):
+def get_data(symbol, period="1y", interval="1d"):
     data = yf.download(symbol, period=period, interval=interval, multi_level_index=False)
     data = data.rename(columns={
         "Open": "open",
@@ -41,7 +41,7 @@ def backtest(symbol):
     cerebro.adddata(data)
     cerebro.broker.set_cash(100000)  # Set initial capital
     cerebro.broker.setcommission(commission=0.001)  # 0.1% commission
-    cerebro.addsizer(bt.sizers.FixedSize, stake=10)  # Number of shares per trade
+    cerebro.addsizer(bt.sizers.PercentSizer, percents=10)  # Trade with 10% of the available cash per trade
 
     # Run backtest and get trade signals from the analyzer
     results = cerebro.run()

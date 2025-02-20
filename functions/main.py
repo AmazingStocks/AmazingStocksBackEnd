@@ -8,7 +8,7 @@ from flask import Flask
 
 import tradesignals
 
-# initialize_app()  # if needed
+initialize_app()  # if needed
 app = Flask(__name__)
 
 @app.route('/')
@@ -22,8 +22,12 @@ def about():
 @app.route('/tradesignals')
 def contact():
 	return tradesignals.main("data/tickers_nse50.txt")
-
-@https_fn.on_request()
+ 	# return "Hello from the tradesignals page!"
+  
+@https_fn.on_request(
+    timeout_sec=300,
+    memory=1024
+)
 def amazing_stocks_be(req: https_fn.Request) -> https_fn.Response:
 	with app.request_context(req.environ):
 		response = app.full_dispatch_request()

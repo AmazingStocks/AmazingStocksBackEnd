@@ -43,7 +43,7 @@ def contact():
     memory=1024
 )
 def amazing_stocks_be(req: https_fn.Request) -> https_fn.Response:
-	decoded_token = verify_firebase_token(req)
+	#decoded_token = verify_firebase_token(req)
 	with app.request_context(req.environ):
 		response = app.full_dispatch_request()
 	return response

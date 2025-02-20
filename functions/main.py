@@ -3,13 +3,27 @@
 # Deploy with `firebase deploy`
 
 from firebase_functions import https_fn
-from firebase_admin import initialize_app
-from flask import Flask
+from firebase_admin import initialize_app, auth, credentials
+from flask import Flask, abort
 
 import tradesignals
 
-initialize_app()  # if needed
+# Initialize the Firebase Admin SDK (adjust the credentials as needed)
+cred = credentials.Certificate("serviceAccountKey.json")
+initialize_app(cred)
 app = Flask(__name__)
+
+def verify_firebase_token(request):
+    auth_header = request.headers.get('Authorization')
+    if not auth_header or not auth_header.startswith('Bearer '):
+        abort(401, description="Missing or invalid token")
+    token = auth_header.split('Bearer ')[1]
+    try:
+        # Verify the token using Firebase Admin SDK
+        decoded_token = auth.verify_id_token(token)
+        return decoded_token
+    except Exception as e:
+        abort(401, description=f"Token verification failed: {e}")
 
 @app.route('/')
 def home():
@@ -29,6 +43,7 @@ def contact():
     memory=1024
 )
 def amazing_stocks_be(req: https_fn.Request) -> https_fn.Response:
+	decoded_token = verify_firebase_token(req)
 	with app.request_context(req.environ):
 		response = app.full_dispatch_request()
 	return response

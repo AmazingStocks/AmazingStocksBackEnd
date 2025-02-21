@@ -7,3 +7,4 @@ yfinance==0.2.54
 pandas 
 numpy 
 matplotlib
+yahoo_fin

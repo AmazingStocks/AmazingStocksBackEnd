@@ -1,6 +1,7 @@
 import backtrader as bt
 import yfinance as yf
 import datetime
+from yahoo_fin import stock_info as si
 import matplotlib
 import json
 
@@ -10,6 +11,16 @@ from tradingstrategies.MeanReversionStrategy import MeanReversionStrategy
 from tradingstrategies.MovingAverageCrossoverStrategy import MovingAverageCrossoverStrategy
 matplotlib.use("Agg")  # Use Agg backend for non-GUI environments
 import matplotlib.pyplot as plt
+
+def get_all_tickers(segment : str):
+    if segment == "nifty50":
+        return si.tickers_nifty50()
+    elif segment == "niftybank":
+        return si.tickers_niftybank()
+    elif segment == "nifty100":
+        return load_tickers("data/tickers_nifty100.txt")
+    
+    return si.tickers_nifty50()
 
 # Download Historical Data from Yahoo Finance
 def get_data(symbol, period="1y", interval="1d"):
@@ -54,6 +65,18 @@ def backtest(symbol):
 
 def main(filepath):
     tickers = load_tickers(filepath)
+    all_signals = run_backtests(tickers)
+    return all_signals
+
+def run_backtests(segment : str):
+    tickers = get_all_tickers(segment)
+    all_signals = {}
+    for symbol in tickers:
+        result = backtest(symbol)
+        all_signals[symbol] = result
+    return all_signals
+
+def run_backtests(tickers):
     all_signals = {}
     for symbol in tickers:
         result = backtest(symbol)
@@ -68,5 +91,5 @@ def load_tickers(file_path):
 
 # Run Backtest for Reliance Industries (NSE)
 if __name__ == "__main__":
-    final_json = main("data/tickers_tmp.txt")
-    print(final_json)
+    tickers = get_all_tickers("nifty100")
+    print(tickers)

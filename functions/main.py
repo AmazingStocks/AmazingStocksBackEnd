@@ -4,8 +4,8 @@
 
 from firebase_functions import https_fn
 from firebase_admin import initialize_app, auth, credentials
-from flask import Flask, abort
-
+from flask import Flask, abort, request
+import json
 import tradesignals
 
 # Initialize the Firebase Admin SDK (adjust the credentials as needed)
@@ -33,11 +33,17 @@ def home():
 def about():
 	return 'This is the about page!'
 
-@app.route('/tradesignals')
+@app.route('/tradesignals')  # Original route remains, if needed
 def contact():
 	return tradesignals.main("data/tickers_nse50.txt")
- 	# return "Hello from the tradesignals page!"
-  
+
+@app.route('/tradesignals/<segment>')
+def tradesignals_segment(segment):
+    # Call run_backtests with the provided segment parameter
+    signals = tradesignals.run_backtests(segment)
+    # Return signals as JSON if not already a string
+    return signals if isinstance(signals, str) else json.dumps(signals)
+
 @https_fn.on_request(
     timeout_sec=300,
     memory=1024

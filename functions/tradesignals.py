@@ -32,7 +32,6 @@ def get_data(symbol, period="1y", interval="1d"):
         "Close": "close",
         "Volume": "volume"
     })
-    # data.columns = data.columns.droplevel(0) # Drop the first level (Ticker Names)
     return data
 
 # Custom analyzer to collect trade signals
@@ -63,25 +62,19 @@ def backtest(symbol):
     
     return  signals
 
-def main(filepath):
-    tickers = load_tickers(filepath)
-    all_signals = run_backtests(tickers)
-    return all_signals
 
 def run_backtests(segment : str):
     tickers = get_all_tickers(segment)
     all_signals = {}
     for symbol in tickers:
-        result = backtest(symbol)
-        all_signals[symbol] = result
-    return all_signals
+        try:
+            result = backtest(symbol)
+            all_signals[symbol] = result
+        except Exception as e:
+            print(f"Error processing {symbol}: {e}")
+    filtered_signals = {symbol: result for symbol, result in all_signals.items() if result and result != []}
+    return filtered_signals
 
-def run_backtests(tickers):
-    all_signals = {}
-    for symbol in tickers:
-        result = backtest(symbol)
-        all_signals[symbol] = result
-    return all_signals
 
 # Load tickers from a file
 def load_tickers(file_path):

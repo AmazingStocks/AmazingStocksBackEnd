@@ -19,6 +19,8 @@ def get_all_tickers(segment : str):
         return si.tickers_niftybank()
     elif segment == "nifty100":
         return load_tickers("data/tickers_nifty100.txt")
+    elif segment == "nifty500":
+        return load_tickers("data/tickers_nifty500.txt")
     
     return si.tickers_nifty50()
 

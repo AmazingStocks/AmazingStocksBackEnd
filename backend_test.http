@@ -1,7 +1,7 @@
 ### Get Request
-GET http://127.0.0.1:5001/amazingstocks-9829a/us-central1/amazing_stocks_be/tradesignals/nifty100
+GET http://127.0.0.1:5001/amazingstocks-9829a/us-central1/amazing_stocks_be/tr00
 Content-Type: application/json
 
 ### Get Request - FirebaseFunctions
-GET https://amazing-stocks-be-cvgblhnzpa-uc.a.run.app/tradesignals
+GET https://amazing-stocks-be-cvgblhnzpa-uc.a.run.app/tradesignals/nifty100
 Content-Type: application/json

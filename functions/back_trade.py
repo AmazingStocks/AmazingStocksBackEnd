@@ -73,4 +73,4 @@ def load_tickers(file_path):
 
 # Run Backtest for Reliance Industries (NSE)
 if __name__ == "__main__":
-    main("tickers_backtest.txt")
+    main("data/tickers_backtest.txt")

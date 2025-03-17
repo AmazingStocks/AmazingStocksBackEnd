@@ -2,8 +2,6 @@ import backtrader as bt
 import yfinance as yf
 import datetime
 import matplotlib
-
-from tradingstrategies.KNNMovingAverageCrossoverStrategy import KNNMovingAverageCrossoverStrategy
 from tradingstrategies.MeanReversionStrategy import MeanReversionStrategy
 from tradingstrategies.MovingAverageCrossoverStrategy import MovingAverageCrossoverStrategy
 matplotlib.use("Agg")  # Use Agg backend for non-GUI environments
@@ -26,7 +24,7 @@ def get_data(symbol, period="5y", interval="1d"):
 # Backtest Function
 def backtest(symbol):
     cerebro = bt.Cerebro()
-    cerebro.addstrategy(MovingAverageCrossoverStrategy, chk_last_weeks=999, symbol=symbol)
+    cerebro.addstrategy(MovingAverageCrossoverStrategy, chk_last_weeks=999, symbol=symbol, print_signals=True)
 
     # Load Data
     df = get_data(symbol)

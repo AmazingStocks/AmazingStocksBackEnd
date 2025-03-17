@@ -5,6 +5,7 @@ class BaseStrategy(bt.Strategy):
     def __init__(self, *args, **kwargs):
         self.chk_last_weeks = kwargs.get("chk_last_weeks", 999)
         self.symbol = kwargs.get("symbol", "TCS.NS")
+        self.print_signals = kwargs.get("print_signals", False)
         # List to store signals as tuples: (date, signal type, price)
         self.generated_signals = []
         
@@ -43,5 +44,8 @@ class BaseStrategy(bt.Strategy):
         cutoff_date = last_date - dt.timedelta(weeks=self.chk_last_weeks)
         if self.generated_signals:            
             self.last_signals = [signal for signal in self.generated_signals if dt.datetime.strptime(signal["date"], '%Y-%m-%d').date() >= cutoff_date]
-           
-        
+        # New feature: print all trade signals if enabled
+        if self.print_signals:
+            for signal in self.generated_signals:
+                self.log(f"Trade Signal: {signal}")
+

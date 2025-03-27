@@ -46,6 +46,15 @@ def backtest(symbol):
     # Save the plot as an image file instead of displaying it
     fig = cerebro.plot()[0][0]
     fig.savefig(f"backtest_images/backtest_plot_{symbol}.png")  # Save as PNG file
+    plt.close(fig)
+    
+    result = {
+        "symbol": symbol,
+        "starting_capital": starting_capital,
+        "ending_capital": ending_capital,
+        "profit_loss": ending_capital - starting_capital
+    }
+    return result
 
 def main(filepath):
     tickers = load_tickers(filepath)

@@ -7,6 +7,7 @@ from firebase_admin import initialize_app, auth, credentials
 from flask import Flask, abort, request
 import json
 import tradesignals
+import back_trade
 
 # Initialize the Firebase Admin SDK (adjust the credentials as needed)
 cred = credentials.Certificate("serviceAccountKey.json")
@@ -43,6 +44,11 @@ def tradesignals_segment(segment):
     signals = tradesignals.run_backtests(segment)
     # Return signals as JSON if not already a string
     return signals if isinstance(signals, str) else json.dumps(signals)
+
+@app.route('/backtrade/<symbol>')
+def backtrade(symbol):
+    return back_trade.backtest(symbol)
+
 
 @https_fn.on_request(
     timeout_sec=300,

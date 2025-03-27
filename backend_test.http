@@ -2,6 +2,14 @@
 GET http://127.0.0.1:5001/amazingstocks-9829a/us-central1/amazing_stocks_be/tradesignals/nifty500
 Content-Type: application/json
 
+### Get Request
+GET http://127.0.0.1:5001/amazingstocks-9829a/us-central1/amazing_stocks_be/backtrade/HDFCBANK.NS
+Content-Type: application/json
+
 ### Get Request - FirebaseFunctions
 GET https://amazing-stocks-be-cvgblhnzpa-uc.a.run.app/tradesignals/nifty500
+Content-Type: application/json
+
+### Get Request
+GET https://amazing-stocks-be-cvgblhnzpa-uc.a.run.app/backtrade/HDFCBANK.NS
 Content-Type: application/json

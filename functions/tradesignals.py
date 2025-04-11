@@ -77,6 +77,13 @@ def async_backtest(segment: str, process_id):
             try:
                 result = backtest(symbol)
                 all_signals[symbol] = result
+                completed_count = len(all_signals)
+                total_count = len(tickers)
+                completion_percent = int((completed_count / total_count) * 100)
+                update_document("process-list", process_id, {
+                    "completionPercent": completion_percent,
+                    "completionStatus": f"In progress {completed_count}/{total_count}"
+                })
             except Exception as e:
                 print(f"Error processing {symbol}: {e}")
         filtered_signals = {symbol: result for symbol, result in all_signals.items() if result and result != []}

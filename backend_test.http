@@ -1,9 +1,9 @@
 ### Get Request
-GET http://127.0.0.1:5001/amazingstocks-9829a/us-central1/amazing_stocks_be/tradesignals/nifty50
+GET http://127.0.0.1:5001/amazingstocks-9829a/us-central1/amazing_stocks_be/tradesignals/nifty500
 Content-Type: application/json
 
 ### Get Request
-GET http://127.0.0.1:5001/amazingstocks-9829a/us-central1/amazing_stocks_be/tradesignals/getresult/45cf1baf-4e24-4a6e-8061-998867db09bf
+GET http://127.0.0.1:5001/amazingstocks-9829a/us-central1/amazing_stocks_be/tradesignals/getresult/fc2d2857-76e1-48c4-89dc-940808ef4f26
 Content-Type: application/json
 
 ### Get Request
@@ -11,12 +11,12 @@ GET http://127.0.0.1:5001/amazingstocks-9829a/us-central1/amazing_stocks_be/back
 Content-Type: application/json
 
 ### Get Request - FirebaseFunctions
-GET https://amazing-stocks-be-cvgblhnzpa-uc.a.run.app/tradesignals/nifty500
+GET https://amazing-stocks-be-cvgblhnzpa-uc.a.run.app/tradesignals/nifty50
 Content-Type: application/json
 
 
 ### Get Request
-GET https://amazing-stocks-be-cvgblhnzpa-uc.a.run.app/tradesignals/getresult/45cf1baf-4e24-4a6e-8061-998867db09bf
+GET https://amazing-stocks-be-cvgblhnzpa-uc.a.run.app/tradesignals/getresult/b2e42627-1bd6-4089-b785-8e49ff1ac522
 Content-Type: application/json
 
 

@@ -28,6 +28,32 @@ def get_all_tickers(segment : str):
     
     return si.tickers_nifty50()
 
+def get_data_multiple_symbols(symbols, period="1y", interval="1d"):
+    data = None
+    try:
+        data = yf.download(symbols,group_by='ticker', period=period, interval=interval, multi_level_index=False)
+        print(data)
+    except Exception as e:
+        print(f"Error downloading data  {e}")
+    return data
+
+def extract_single_ticker_data(symbol, data):   
+    if symbol in data:
+        df = data[symbol].copy()
+        df = df.rename(columns={
+            "Open": "open",
+            "High": "high",
+            "Low": "low",
+            "Close": "close",
+            "Volume": "volume"
+        })
+        return df
+    else:
+        print(f"No data found for {symbol}")
+        return None
+    
+    
+
 # Download Historical Data from Yahoo Finance
 def get_data(symbol, period="1y", interval="1d"):
     data = yf.download(symbol, period=period, interval=interval, multi_level_index=False)
@@ -42,7 +68,7 @@ def get_data(symbol, period="1y", interval="1d"):
 
 # Custom analyzer to collect trade signals
 # Backtest Function modified to return JSON object with trade signals
-def backtest(symbol):
+def backtest(symbol, data):
     cerebro = bt.Cerebro()
     cerebro.addstrategy(MovingAverageCrossoverStrategy, chk_last_weeks=1, symbol=symbol)
     
@@ -50,7 +76,11 @@ def backtest(symbol):
     cerebro.addanalyzer(TradeSignalsAnalyzer, _name="tradesignals")
     
     # Load Data
-    df = get_data(symbol)
+    df = extract_single_ticker_data(symbol, data)
+    if df is None:
+        print(f"No data found for {symbol}")
+        raise ValueError(f"No data found for {symbol}")
+    
     data = bt.feeds.PandasData(dataname=df)
     
     # Add data to Cerebro
@@ -72,18 +102,20 @@ def backtest(symbol):
 def async_backtest(segment: str, process_id):
     try:
         tickers = get_all_tickers(segment)
+        data = get_data_multiple_symbols(tickers)
         all_signals = {}
         for symbol in tickers:
             try:
-                result = backtest(symbol)
+                result = backtest(symbol, data)
                 all_signals[symbol] = result
                 completed_count = len(all_signals)
                 total_count = len(tickers)
                 completion_percent = int((completed_count / total_count) * 100)
-                update_document("process-list", process_id, {
-                    "completionPercent": completion_percent,
-                    "completionStatus": f"In progress {completed_count}/{total_count}"
-                })
+                if completion_percent in {5, 25, 50, 75}:
+                    update_document("process-list", process_id, {
+                        "completionPercent": completion_percent,
+                        "completionStatus": f"In progress {completed_count}/{total_count}"
+                    })
             except Exception as e:
                 print(f"Error processing {symbol}: {e}")
         filtered_signals = {symbol: result for symbol, result in all_signals.items() if result and result != []}
@@ -140,5 +172,5 @@ def load_tickers(file_path):
 
 # Run Backtest for Reliance Industries (NSE)
 if __name__ == "__main__":
-    tickers = get_all_tickers("nifty100")
-    print(tickers)
+    process_id = run_backtests("nifty500")
+    print(process_id)

@@ -1,0 +1,185 @@
+[debug] [2025-04-11T12:21:54.959Z] ----------------------------------------------------------------------
+[debug] [2025-04-11T12:21:54.961Z] Command:       /usr/local/share/nvm/versions/node/v20.18.1/bin/node /home/codespace/nvm/current/bin/firebase deploy --only functions
+[debug] [2025-04-11T12:21:54.961Z] CLI Version:   13.31.1
+[debug] [2025-04-11T12:21:54.961Z] Platform:      linux
+[debug] [2025-04-11T12:21:54.961Z] Node Version:  v20.18.1
+[debug] [2025-04-11T12:21:54.961Z] Time:          Fri Apr 11 2025 12:21:54 GMT+0000 (Coordinated Universal Time)
+[debug] [2025-04-11T12:21:54.961Z] Env Overrides: GITHUB_API_URL, GITHUB_API_URL
+[debug] [2025-04-11T12:21:54.962Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-04-11T12:21:55.300Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-04-11T12:21:55.301Z] > authorizing via signed-in user (senapati.arnab@gmail.com)
+[debug] [2025-04-11T12:21:55.301Z] [iam] checking project amazingstocks-9829a for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2025-04-11T12:21:55.305Z] Checked if tokens are valid: true, expires at: 1744375671296
+[debug] [2025-04-11T12:21:55.305Z] Checked if tokens are valid: true, expires at: 1744375671296
+[debug] [2025-04-11T12:21:55.308Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/amazingstocks-9829a:testIamPermissions [none]
+[debug] [2025-04-11T12:21:55.309Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/amazingstocks-9829a:testIamPermissions x-goog-quota-user=projects/amazingstocks-9829a
+[debug] [2025-04-11T12:21:55.309Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/amazingstocks-9829a:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2025-04-11T12:21:55.636Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/amazingstocks-9829a:testIamPermissions 200
+[debug] [2025-04-11T12:21:55.637Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/amazingstocks-9829a:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2025-04-11T12:21:55.638Z] Checked if tokens are valid: true, expires at: 1744375671296
+[debug] [2025-04-11T12:21:55.638Z] Checked if tokens are valid: true, expires at: 1744375671296
+[debug] [2025-04-11T12:21:55.638Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/amazingstocks-9829a/serviceAccounts/amazingstocks-9829a@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2025-04-11T12:21:55.638Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/amazingstocks-9829a/serviceAccounts/amazingstocks-9829a@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2025-04-11T12:21:55.957Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/amazingstocks-9829a/serviceAccounts/amazingstocks-9829a@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2025-04-11T12:21:55.957Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/amazingstocks-9829a/serviceAccounts/amazingstocks-9829a@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[info] 
+[info] === Deploying to 'amazingstocks-9829a'...
+[info] 
+[info] i  deploying functions 
+[debug] [2025-04-11T12:21:55.961Z] Checked if tokens are valid: true, expires at: 1744375671296
+[debug] [2025-04-11T12:21:55.961Z] Checked if tokens are valid: true, expires at: 1744375671296
+[debug] [2025-04-11T12:21:55.961Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/amazingstocks-9829a [none]
+[debug] [2025-04-11T12:21:56.079Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/amazingstocks-9829a 200
+[debug] [2025-04-11T12:21:56.079Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/amazingstocks-9829a {"projectNumber":"601836325355","projectId":"amazingstocks-9829a","lifecycleState":"ACTIVE","name":"AmazingStocks","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2025-02-13T10:44:53.648548Z"}
+[info] i  functions: preparing codebase default for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[debug] [2025-04-11T12:21:56.081Z] Checked if tokens are valid: true, expires at: 1744375671296
+[debug] [2025-04-11T12:21:56.081Z] Checked if tokens are valid: true, expires at: 1744375671296
+[debug] [2025-04-11T12:21:56.081Z] Checked if tokens are valid: true, expires at: 1744375671296
+[debug] [2025-04-11T12:21:56.081Z] Checked if tokens are valid: true, expires at: 1744375671296
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[debug] [2025-04-11T12:21:56.082Z] Checked if tokens are valid: true, expires at: 1744375671296
+[debug] [2025-04-11T12:21:56.082Z] Checked if tokens are valid: true, expires at: 1744375671296
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2025-04-11T12:21:56.083Z] Checked if tokens are valid: true, expires at: 1744375671296
+[debug] [2025-04-11T12:21:56.083Z] Checked if tokens are valid: true, expires at: 1744375671296
+[debug] [2025-04-11T12:21:56.083Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/cloudfunctions.googleapis.com [none]
+[debug] [2025-04-11T12:21:56.084Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/amazingstocks-9829a
+[debug] [2025-04-11T12:21:56.086Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/runtimeconfig.googleapis.com [none]
+[debug] [2025-04-11T12:21:56.086Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/amazingstocks-9829a
+[debug] [2025-04-11T12:21:56.087Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/cloudbuild.googleapis.com [none]
+[debug] [2025-04-11T12:21:56.087Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/cloudbuild.googleapis.com x-goog-quota-user=projects/amazingstocks-9829a
+[debug] [2025-04-11T12:21:56.089Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/artifactregistry.googleapis.com [none]
+[debug] [2025-04-11T12:21:56.089Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/artifactregistry.googleapis.com x-goog-quota-user=projects/amazingstocks-9829a
+[debug] [2025-04-11T12:21:56.516Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/runtimeconfig.googleapis.com 200
+[debug] [2025-04-11T12:21:56.516Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2025-04-11T12:21:56.519Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/artifactregistry.googleapis.com 200
+[debug] [2025-04-11T12:21:56.519Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/artifactregistry.googleapis.com [omitted]
+[info] ✔  artifactregistry: required API artifactregistry.googleapis.com is enabled 
+[debug] [2025-04-11T12:21:56.521Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/cloudfunctions.googleapis.com 200
+[debug] [2025-04-11T12:21:56.521Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/cloudfunctions.googleapis.com [omitted]
+[info] ✔  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2025-04-11T12:21:56.522Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/cloudbuild.googleapis.com 200
+[debug] [2025-04-11T12:21:56.522Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/cloudbuild.googleapis.com [omitted]
+[info] ✔  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2025-04-11T12:21:56.523Z] Checked if tokens are valid: true, expires at: 1744375671296
+[debug] [2025-04-11T12:21:56.523Z] Checked if tokens are valid: true, expires at: 1744375671296
+[debug] [2025-04-11T12:21:56.524Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/amazingstocks-9829a/adminSdkConfig [none]
+[debug] [2025-04-11T12:21:56.915Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/amazingstocks-9829a/adminSdkConfig 200
+[debug] [2025-04-11T12:21:56.915Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/amazingstocks-9829a/adminSdkConfig {"projectId":"amazingstocks-9829a","storageBucket":"amazingstocks-9829a.firebasestorage.app"}
+[debug] [2025-04-11T12:21:56.916Z] Checked if tokens are valid: true, expires at: 1744375671296
+[debug] [2025-04-11T12:21:56.916Z] Checked if tokens are valid: true, expires at: 1744375671296
+[debug] [2025-04-11T12:21:56.916Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/amazingstocks-9829a/configs [none]
+[debug] [2025-04-11T12:21:57.087Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/amazingstocks-9829a/configs 200
+[debug] [2025-04-11T12:21:57.088Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/amazingstocks-9829a/configs {}
+[debug] [2025-04-11T12:21:57.089Z] Customer code is not Node
+[debug] [2025-04-11T12:21:57.089Z] Validating python source
+[debug] [2025-04-11T12:21:57.090Z] Building python source
+[info] i  functions: Loading and analyzing source code for codebase default to determine what to deploy 
+[debug] [2025-04-11T12:21:57.092Z] Could not find functions.yaml. Must use http discovery
+[debug] [2025-04-11T12:21:57.101Z] Running command with virtualenv: command=., args=["\"/workspaces/AmazingStocksBackEnd/functions/venv/bin/activate\"","&&","python3.12","-c","\"import firebase_functions; import os; print(os.path.dirname(firebase_functions.__file__))\""]
+[debug] [2025-04-11T12:21:57.118Z] stdout: /workspaces/AmazingStocksBackEnd/functions/venv/lib/python3.12/site-packages/firebase_functions
+
+[debug] [2025-04-11T12:21:57.122Z] Running admin server with args: ["python3.12","\"/workspaces/AmazingStocksBackEnd/functions/venv/lib/python3.12/site-packages/firebase_functions/private/serving.py\""] and env: {"FIREBASE_CONFIG":"{\"projectId\":\"amazingstocks-9829a\",\"storageBucket\":\"amazingstocks-9829a.firebasestorage.app\"}","GCLOUD_PROJECT":"amazingstocks-9829a","GOOGLE_CLOUD_QUOTA_PROJECT":"amazingstocks-9829a","ADMIN_PORT":"8081"} in /workspaces/AmazingStocksBackEnd/functions
+[debug] [2025-04-11T12:21:57.122Z] Running command with virtualenv: command=., args=["\"/workspaces/AmazingStocksBackEnd/functions/venv/bin/activate\"","&&","python3.12","\"/workspaces/AmazingStocksBackEnd/functions/venv/lib/python3.12/site-packages/firebase_functions/private/serving.py\""]
+[info]  * Serving Flask app 'serving'
+ * Debug mode: off
+
+[error] WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://127.0.0.1:8081
+
+[error] Press CTRL+C to quit
+
+[error] 127.0.0.1 - - [11/Apr/2025 12:21:58] "GET /__/functions.yaml HTTP/1.1" 200 -
+
+[debug] [2025-04-11T12:21:58.958Z] Got response from /__/functions.yaml endpoints:
+  amazing_stocks_be:
+    availableMemoryMb: 1024
+    concurrency: null
+    entryPoint: amazing_stocks_be
+    httpsTrigger: {}
+    ingressSettings: null
+    labels: {}
+    maxInstances: null
+    minInstances: null
+    platform: gcfv2
+    secretEnvironmentVariables: []
+    serviceAccountEmail: null
+    timeoutSeconds: 300
+params: []
+requiredAPIs: []
+specVersion: v1alpha1
+
+[error] 127.0.0.1 - - [11/Apr/2025 12:21:58] "GET /__/quitquitquit HTTP/1.1" 200 -
+
+[error] Terminated
+
+[info] i  functions: preparing functions directory for uploading... 
+[info] i  functions: packaged /workspaces/AmazingStocksBackEnd/functions (624.54 KB) for uploading 
+[debug] [2025-04-11T12:21:59.244Z] Checked if tokens are valid: true, expires at: 1744375671296
+[debug] [2025-04-11T12:21:59.244Z] Checked if tokens are valid: true, expires at: 1744375671296
+[debug] [2025-04-11T12:21:59.245Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v1/projects/amazingstocks-9829a/locations/-/functions [none]
+[debug] [2025-04-11T12:21:59.724Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v1/projects/amazingstocks-9829a/locations/-/functions 200
+[debug] [2025-04-11T12:21:59.724Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v1/projects/amazingstocks-9829a/locations/-/functions {}
+[debug] [2025-04-11T12:21:59.724Z] Checked if tokens are valid: true, expires at: 1744375671296
+[debug] [2025-04-11T12:21:59.725Z] Checked if tokens are valid: true, expires at: 1744375671296
+[debug] [2025-04-11T12:21:59.725Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/amazingstocks-9829a/locations/-/functions filter=environment%3D%22GEN_2%22
+[debug] [2025-04-11T12:22:00.307Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/amazingstocks-9829a/locations/-/functions 200
+[debug] [2025-04-11T12:22:00.308Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/amazingstocks-9829a/locations/-/functions {"functions":[{"name":"projects/amazingstocks-9829a/locations/us-central1/functions/amazing_stocks_be","buildConfig":{"build":"projects/601836325355/locations/us-central1/builds/9929786f-2bd8-4e44-9ad9-9ce81ecc0618","runtime":"python312","entryPoint":"amazing_stocks_be","source":{"storageSource":{"bucket":"gcf-v2-sources-601836325355-us-central1","object":"amazing_stocks_be/function-source.zip","generation":"1744372081623038"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"dockerRepository":"projects/amazingstocks-9829a/locations/us-central1/repositories/gcf-artifacts","sourceProvenance":{"resolvedStorageSource":{"bucket":"gcf-v2-sources-601836325355-us-central1","object":"amazing_stocks_be/function-source.zip","generation":"1744372081623038"}},"dockerRegistry":"ARTIFACT_REGISTRY","serviceAccount":"projects/amazingstocks-9829a/serviceAccounts/601836325355-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/amazingstocks-9829a/locations/us-central1/services/amazing-stocks-be","timeoutSeconds":300,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"amazingstocks-9829a\",\"storageBucket\":\"amazingstocks-9829a.firebasestorage.app\"}","GCLOUD_PROJECT":"amazingstocks-9829a","EVENTARC_CLOUD_EVENT_SOURCE":"projects/amazingstocks-9829a/locations/us-central1/services/amazing_stocks_be","FUNCTION_TARGET":"amazing_stocks_be","LOG_EXECUTION_ID":"true"},"maxInstanceCount":100,"ingressSettings":"ALLOW_ALL","uri":"https://amazing-stocks-be-cvgblhnzpa-uc.a.run.app","serviceAccountEmail":"601836325355-compute@developer.gserviceaccount.com","availableMemory":"1024Mi","allTrafficOnLatestRevision":true,"revision":"amazing-stocks-be-00016-pob","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"state":"ACTIVE","updateTime":"2025-04-11T11:49:08.223949301Z","labels":{"deployment-tool":"cli-firebase","firebase-functions-hash":"e5fc3a58eb5cafb941648b7d2334a65b909b83a8"},"environment":"GEN_2","url":"https://us-central1-amazingstocks-9829a.cloudfunctions.net/amazing_stocks_be","createTime":"2025-02-18T10:14:10.707731783Z","satisfiesPzi":true}]}
+[info] i  functions: ensuring required API run.googleapis.com is enabled... 
+[debug] [2025-04-11T12:22:00.312Z] Checked if tokens are valid: true, expires at: 1744375671296
+[debug] [2025-04-11T12:22:00.312Z] Checked if tokens are valid: true, expires at: 1744375671296
+[info] i  functions: ensuring required API eventarc.googleapis.com is enabled... 
+[debug] [2025-04-11T12:22:00.313Z] Checked if tokens are valid: true, expires at: 1744375671296
+[debug] [2025-04-11T12:22:00.313Z] Checked if tokens are valid: true, expires at: 1744375671296
+[info] i  functions: ensuring required API pubsub.googleapis.com is enabled... 
+[debug] [2025-04-11T12:22:00.314Z] Checked if tokens are valid: true, expires at: 1744375671296
+[debug] [2025-04-11T12:22:00.314Z] Checked if tokens are valid: true, expires at: 1744375671296
+[info] i  functions: ensuring required API storage.googleapis.com is enabled... 
+[debug] [2025-04-11T12:22:00.314Z] Checked if tokens are valid: true, expires at: 1744375671296
+[debug] [2025-04-11T12:22:00.314Z] Checked if tokens are valid: true, expires at: 1744375671296
+[debug] [2025-04-11T12:22:00.315Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/run.googleapis.com [none]
+[debug] [2025-04-11T12:22:00.315Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/run.googleapis.com x-goog-quota-user=projects/amazingstocks-9829a
+[debug] [2025-04-11T12:22:00.315Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/eventarc.googleapis.com [none]
+[debug] [2025-04-11T12:22:00.316Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/eventarc.googleapis.com x-goog-quota-user=projects/amazingstocks-9829a
+[debug] [2025-04-11T12:22:00.316Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/pubsub.googleapis.com [none]
+[debug] [2025-04-11T12:22:00.316Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/pubsub.googleapis.com x-goog-quota-user=projects/amazingstocks-9829a
+[debug] [2025-04-11T12:22:00.316Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/storage.googleapis.com [none]
+[debug] [2025-04-11T12:22:00.317Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/storage.googleapis.com x-goog-quota-user=projects/amazingstocks-9829a
+[debug] [2025-04-11T12:22:00.459Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/eventarc.googleapis.com 200
+[debug] [2025-04-11T12:22:00.460Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/eventarc.googleapis.com [omitted]
+[info] ✔  functions: required API eventarc.googleapis.com is enabled 
+[debug] [2025-04-11T12:22:00.464Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/storage.googleapis.com 200
+[debug] [2025-04-11T12:22:00.465Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/storage.googleapis.com [omitted]
+[info] ✔  functions: required API storage.googleapis.com is enabled 
+[debug] [2025-04-11T12:22:00.493Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/pubsub.googleapis.com 200
+[debug] [2025-04-11T12:22:00.493Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/pubsub.googleapis.com [omitted]
+[info] ✔  functions: required API pubsub.googleapis.com is enabled 
+[debug] [2025-04-11T12:22:00.494Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/run.googleapis.com 200
+[debug] [2025-04-11T12:22:00.494Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/amazingstocks-9829a/services/run.googleapis.com [omitted]
+[info] ✔  functions: required API run.googleapis.com is enabled 
+[info] i  functions: generating the service identity for pubsub.googleapis.com... 
+[debug] [2025-04-11T12:22:00.495Z] Checked if tokens are valid: true, expires at: 1744375671296
+[debug] [2025-04-11T12:22:00.495Z] Checked if tokens are valid: true, expires at: 1744375671296
+[info] i  functions: generating the service identity for eventarc.googleapis.com... 
+[debug] [2025-04-11T12:22:00.496Z] Checked if tokens are valid: true, expires at: 1744375671296
+[debug] [2025-04-11T12:22:00.496Z] Checked if tokens are valid: true, expires at: 1744375671296
+[debug] [2025-04-11T12:22:00.496Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1beta1/projects/601836325355/services/pubsub.googleapis.com:generateServiceIdentity [none]
+[debug] [2025-04-11T12:22:00.497Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1beta1/projects/601836325355/services/eventarc.googleapis.com:generateServiceIdentity [none]
+[debug] [2025-04-11T12:22:00.720Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1beta1/projects/601836325355/services/eventarc.googleapis.com:generateServiceIdentity 200
+[debug] [2025-04-11T12:22:00.720Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/601836325355/services/eventarc.googleapis.com:generateServiceIdentity {"name":"operations/finished.DONE_OPERATION","done":true,"response":{"@type":"type.googleapis.com/google.api.serviceusage.v1beta1.ServiceIdentity","email":"service-601836325355@gcp-sa-eventarc.iam.gserviceaccount.com","uniqueId":"100206469505228263319"}}
+[debug] [2025-04-11T12:22:00.746Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1beta1/projects/601836325355/services/pubsub.googleapis.com:generateServiceIdentity 200
+[debug] [2025-04-11T12:22:00.747Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/601836325355/services/pubsub.googleapis.com:generateServiceIdentity {"name":"operations/finished.DONE_OPERATION","done":true,"response":{"@type":"type.googleapis.com/google.api.serviceusage.v1beta1.ServiceIdentity","email":"service-601836325355@gcp-sa-pubsub.iam.gserviceaccount.com","uniqueId":"112111215767142101188"}}
+[debug] [2025-04-11T12:22:00.748Z] Checked if tokens are valid: true, expires at: 1744375671296
+[debug] [2025-04-11T12:22:00.748Z] Checked if tokens are valid: true, expires at: 1744375671296
+[debug] [2025-04-11T12:22:00.749Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/amazingstocks-9829a [none]
+[debug] [2025-04-11T12:22:00.865Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/amazingstocks-9829a 200
+[debug] [2025-04-11T12:22:00.865Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/amazingstocks-9829a {"projectNumber":"601836325355","projectId":"amazingstocks-9829a","lifecycleState":"ACTIVE","name":"AmazingStocks","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2025-02-13T10:44:53.648548Z"}
+[debug] [2025-04-11T12:22:00.867Z] Checked if tokens are valid: true, expires at: 1744375671296
+[debug] [2025-04-11T12:22:00.867Z] Checked if tokens are valid: true, expires at: 1744375671296
+[debug] [2025-04-11T12:22:00.867Z] >>> [apiv2][query] POST https://cloudfunctions.googleapis.com/v2/projects/amazingstocks-9829a/locations/us-central1/functions:generateUploadUrl [none]
+[debug] [2025-04-11T12:22:01.264Z] <<< [apiv2][status] POST https://cloudfunctions.googleapis.com/v2/projects/amazingstocks-9829a/locations/us-central1/functions:generateUploadUrl 200
+[debug] [2025-04-11T12:22:01.264Z] <<< [apiv2][body] POST https://cloudfunctions.googleapis.com/v2/projects/amazingstocks-9829a/locations/us-central1/functions:generateUploadUrl {"uploadUrl":"https://storage.googleapis.com/gcf-v2-uploads-601836325355.us-central1.cloudfunctions.appspot.com/47774571-1e40-4184-8542-4ce3983f525a.zip?GoogleAccessId=service-601836325355@gcf-admin-robot.iam.gserviceaccount.com&Expires=1744375921&Signature=UJz6PSpyyPGIlkxOI4P9JUtGkgtcrTkDpGd2BVeWUeoGWV8IxoZlmwO5ow%2FI77Old%2Fr1%2BSmPv2lMSo14Kms63T91z6tevZotNUsDlbZ3rx3T9Ctv6RLOf2p3rQF%2Bw42kirfLmO0mkXhEJLdP%2FTY7dmz75jrHUHupWGjN8QznNuJZ%2FxeE2K8gkaW003bbTPV63rGIsF7wLFRlm3HOlCboskG7dp4J6nB7rKAq2KFQcoweAD7lEa6L8LssqWkePEk%2F%2FE6Vy9zEG0f2cjKFclwe78v1cuUg8pvOKkbLsuSo1D%2FSbFOHmadcEzI%2B27JAYWvu3oXfyEJupwCD%2Fel7krw69A%3D%3D","storageSource":{"bucket":"gcf-v2-uploads-601836325355.us-central1.cloudfunctions.appspot.com","object":"47774571-1e40-4184-8542-4ce3983f525a.zip"}}
+[debug] [2025-04-11T12:22:01.265Z] >>> [apiv2][query] PUT https://storage.googleapis.com/gcf-v2-uploads-601836325355.us-central1.cloudfunctions.appspot.com/47774571-1e40-4184-8542-4ce3983f525a.zip GoogleAccessId=service-601836325355%40gcf-admin-robot.iam.gserviceaccount.com&Expires=1744375921&Signature=UJz6PSpyyPGIlkxOI4P9JUtGkgtcrTkDpGd2BVeWUeoGWV8IxoZlmwO5ow%2FI77Old%2Fr1%2BSmPv2lMSo14Kms63T91z6tevZotNUsDlbZ3rx3T9Ctv6RLOf2p3rQF%2Bw42kirfLmO0mkXhEJLdP%2FTY7dmz75jrHUHupWGjN8QznNuJZ%2FxeE2K8gkaW003bbTPV63rGIsF7wLFRlm3HOlCboskG7dp4J6nB7rKAq2KFQcoweAD7lEa6L8LssqWkePEk%2F%2FE6Vy9zEG0f2cjKFclwe78v1cuUg8pvOKkbLsuSo1D%2FSbFOHmadcEzI%2B27JAYWvu3oXfyEJupwCD%2Fel7krw69A%3D%3D
+[debug] [2025-04-11T12:22:01.265Z] >>> [apiv2][body] PUT https://storage.googleapis.com/gcf-v2-uploads-601836325355.us-central1.cloudfunctions.appspot.com/47774571-1e40-4184-8542-4ce3983f525a.zip [stream]

@@ -3,7 +3,11 @@ import yfinance as yf
 import datetime
 from yahoo_fin import stock_info as si
 import matplotlib
+import threading
 import json
+import uuid
+
+from firestore_util import create_document, update_document, get_collection, get_document, delete_document
 
 
 from TradeSignalsAnalyzer import TradeSignalsAnalyzer
@@ -65,18 +69,61 @@ def backtest(symbol):
     return  signals
 
 
-def run_backtests(segment : str):
-    tickers = get_all_tickers(segment)
-    all_signals = {}
-    for symbol in tickers:
-        try:
-            result = backtest(symbol)
-            all_signals[symbol] = result
-        except Exception as e:
-            print(f"Error processing {symbol}: {e}")
-    filtered_signals = {symbol: result for symbol, result in all_signals.items() if result and result != []}
-    return filtered_signals
+def async_backtest(segment: str, process_id):
+    try:
+        tickers = get_all_tickers(segment)
+        all_signals = {}
+        for symbol in tickers:
+            try:
+                result = backtest(symbol)
+                all_signals[symbol] = result
+            except Exception as e:
+                print(f"Error processing {symbol}: {e}")
+        filtered_signals = {symbol: result for symbol, result in all_signals.items() if result and result != []}
 
+        # Update Firestore with completion status and result
+        update_content = {
+            "completionPercent": 100,
+            "completionStatus": "Backtest completed",
+            "result": filtered_signals
+        }
+
+        process_list_collection = "process-list"
+        update_document(process_list_collection, process_id, update_content)
+        
+    except Exception as e:
+        print(f"Error in async_backtest: {e}")
+        update_document("process-list", process_id, {
+            "completionStatus": f"Error: {str(e)}"
+        })
+
+
+def run_backtests(segment: str):
+    
+    process_id = str(uuid.uuid4())
+    # Update Firestore with initial status
+    create_document("process-list", process_id, {
+        "completionPercent": 0,
+        "completionStatus": "Backtest started",
+        "processId": process_id,
+        "result": {}
+    })
+    threading.Thread(target=async_backtest, args=(segment, process_id)).start()
+    
+    return process_id
+
+def get_backtest_status(process_id):
+    data = get_document("process-list", process_id)
+    if data is None:
+        return None
+    
+    return {
+        "completionPercent": data.get("completionPercent"),
+        "completionStatus": data.get("completionStatus"),
+        "processId": data.get("processId"),
+        "result": data.get("result")
+    }
+    
 
 # Load tickers from a file
 def load_tickers(file_path):

@@ -3,7 +3,7 @@
 # Deploy with `firebase deploy`
 
 from firebase_functions import https_fn
-from firebase_admin import initialize_app, auth, credentials
+from firebase_admin import initialize_app, auth, credentials, firestore
 from flask import Flask, abort, request
 import json
 import tradesignals
@@ -12,6 +12,8 @@ import back_trade
 # Initialize the Firebase Admin SDK (adjust the credentials as needed)
 cred = credentials.Certificate("serviceAccountKey.json")
 initialize_app(cred)
+
+
 app = Flask(__name__)
 
 def verify_firebase_token(request):
@@ -38,12 +40,22 @@ def about():
 def contact():
 	return tradesignals.main("data/tickers_nse50.txt")
 
+
+@app.route('/tradesignals/getresult/<process_id>')
+def tradesignals_process(process_id):
+    # Call get_backtest_status with the provided process_id
+    status = tradesignals.get_backtest_status(process_id)
+    if status is None:
+        return "Process ID not found", 404
+    return status
+
+
 @app.route('/tradesignals/<segment>')
 def tradesignals_segment(segment):
     # Call run_backtests with the provided segment parameter
     signals = tradesignals.run_backtests(segment)
     # Return signals as JSON if not already a string
-    return signals if isinstance(signals, str) else json.dumps(signals)
+    return signals 
 
 @app.route('/backtrade/<symbol>')
 def backtrade(symbol):

@@ -37,7 +37,7 @@ def backtest(symbol):
     cerebro.addsizer(bt.sizers.FixedSize, stake=10)  # Number of shares per trade
 
     starting_capital = cerebro.broker.getvalue()
-    print(f"Starting Portfolio Value: {starting_capital:.2f}")
+    print(f"{symbol} --> Starting Portfolio Value: {starting_capital:.2f}")
     cerebro.run()
     ending_capital = cerebro.broker.getvalue()
     print(f"Final Portfolio Value: {ending_capital:.2f}")

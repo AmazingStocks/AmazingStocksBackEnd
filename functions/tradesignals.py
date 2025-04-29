@@ -31,8 +31,7 @@ def get_all_tickers(segment : str):
 def get_data_multiple_symbols(symbols, period="1y", interval="1d"):
     data = None
     try:
-        data = yf.download(symbols,group_by='ticker', period=period, interval=interval, multi_level_index=False)
-        print(data)
+        data = yf.download(symbols,group_by='ticker', period=period, interval=interval, multi_level_index=False, progress=False)
     except Exception as e:
         print(f"Error downloading data  {e}")
     return data
@@ -56,7 +55,7 @@ def extract_single_ticker_data(symbol, data):
 
 # Download Historical Data from Yahoo Finance
 def get_data(symbol, period="1y", interval="1d"):
-    data = yf.download(symbol, period=period, interval=interval, multi_level_index=False)
+    data = yf.download(symbol, period=period, interval=interval, multi_level_index=False,progress=False)
     data = data.rename(columns={
         "Open": "open",
         "High": "high",
@@ -112,10 +111,13 @@ def async_backtest(segment: str, process_id):
                 total_count = len(tickers)
                 completion_percent = int((completed_count / total_count) * 100)
                 if completion_percent in {5, 25, 50, 75}:
-                    update_document("process-list", process_id, {
-                        "completionPercent": completion_percent,
-                        "completionStatus": f"In progress {completed_count}/{total_count}"
-                    })
+                    current_doc = get_document("process-list", process_id)
+                    if current_doc.get("completionPercent") != completion_percent:
+                        update_document("process-list", process_id, {
+                            "completionPercent": completion_percent,
+                            "completionStatus": f"In progress {completed_count}/{total_count}"
+                        })
+                        print(f"Progress: {completion_percent}% ({completed_count}/{total_count})")
             except Exception as e:
                 print(f"Error processing {symbol}: {e}")
         filtered_signals = {symbol: result for symbol, result in all_signals.items() if result and result != []}
@@ -129,6 +131,7 @@ def async_backtest(segment: str, process_id):
 
         process_list_collection = "process-list"
         update_document(process_list_collection, process_id, update_content)
+        print(f"Backtest completed for all symbols. Process ID: {process_id}")
         
     except Exception as e:
         print(f"Error in async_backtest: {e}")
@@ -139,6 +142,12 @@ def async_backtest(segment: str, process_id):
 
 def run_backtests(segment: str):
     
+    process_id = get_process_id()
+    threading.Thread(target=async_backtest, args=(segment, process_id)).start()
+    
+    return process_id
+
+def get_process_id():
     process_id = str(uuid.uuid4())
     # Update Firestore with initial status
     create_document("process-list", process_id, {
@@ -147,7 +156,6 @@ def run_backtests(segment: str):
         "processId": process_id,
         "result": {}
     })
-    threading.Thread(target=async_backtest, args=(segment, process_id)).start()
     
     return process_id
 
@@ -172,5 +180,6 @@ def load_tickers(file_path):
 
 # Run Backtest for Reliance Industries (NSE)
 if __name__ == "__main__":
-    process_id = run_backtests("nifty500")
-    print(process_id)
+    process_id = get_process_id()   
+    async_backtest("nifty50", process_id) 
+    print(f"Process ID: {process_id}")

@@ -3,6 +3,10 @@ GET http://127.0.0.1:5001/amazingstocks-9829a/us-central1/amazing_stocks_be/trad
 Content-Type: application/json
 
 ### Get Request
+GET http://127.0.0.1:5001/amazingstocks-9829a/us-central1/amazing_stocks_be/tradesignal-single/JSWSTEEL.NS
+Content-Type: application/json
+
+### Get Request
 GET http://127.0.0.1:5001/amazingstocks-9829a/us-central1/amazing_stocks_be/tradesignals/getresult/aefc4033-0b13-47c1-adc9-81412f2c525a
 Content-Type: application/json
 

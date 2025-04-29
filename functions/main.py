@@ -57,6 +57,13 @@ def tradesignals_segment(segment):
     # Return signals as JSON if not already a string
     return signals 
 
+@app.route('/tradesignal-single/<symbol>')
+def tradesignal_single(symbol):
+    # Call run_backtests with the provided symbol parameter
+    signals = tradesignals.run_backtests(symbol, single=True)
+    # Return signals as JSON if not already a string
+    return signals 
+
 @app.route('/backtrade/<symbol>')
 def backtrade(symbol):
     return back_trade.backtest(symbol)

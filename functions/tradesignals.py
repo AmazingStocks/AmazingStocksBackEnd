@@ -16,14 +16,15 @@ from tradingstrategies.MovingAverageCrossoverStrategy import MovingAverageCrosso
 matplotlib.use("Agg")  # Use Agg backend for non-GUI environments
 import matplotlib.pyplot as plt
 
-def get_all_tickers(segment : str):
-    if segment == "nifty50":
+def get_all_tickers(segment_or_symbol : str):
+    
+    if segment_or_symbol == "nifty50":
         return si.tickers_nifty50()
-    elif segment == "niftybank":
+    elif segment_or_symbol == "niftybank":
         return si.tickers_niftybank()
-    elif segment == "nifty100":
+    elif segment_or_symbol == "nifty100":
         return load_tickers("data/tickers_nifty100.txt")
-    elif segment == "nifty500":
+    elif segment_or_symbol == "nifty500":
         return load_tickers("data/tickers_nifty500.txt")
     
     return si.tickers_nifty50()
@@ -67,15 +68,22 @@ def get_data(symbol, period="1y", interval="1d"):
 
 # Custom analyzer to collect trade signals
 # Backtest Function modified to return JSON object with trade signals
-def backtest(symbol, data):
+def backtest(symbol, data, single=False, chk_last_weeks=1):
+    """
+    Backtest function to run the Moving Average Crossover strategy.
+    """     
+    
     cerebro = bt.Cerebro()
-    cerebro.addstrategy(MovingAverageCrossoverStrategy, chk_last_weeks=1, symbol=symbol)
+    cerebro.addstrategy(MovingAverageCrossoverStrategy, chk_last_weeks=chk_last_weeks, symbol=symbol)
     
     # Add custom analyzer
     cerebro.addanalyzer(TradeSignalsAnalyzer, _name="tradesignals")
     
     # Load Data
-    df = extract_single_ticker_data(symbol, data)
+    if single:
+        df = data.copy()
+    else:
+        df = extract_single_ticker_data(symbol, data)
     if df is None:
         print(f"No data found for {symbol}")
         raise ValueError(f"No data found for {symbol}")
@@ -98,14 +106,21 @@ def backtest(symbol, data):
     return  signals
 
 
-def async_backtest(segment: str, process_id):
-    try:
+def async_backtest(segment: str, process_id, single: bool = False):
+    """
+    Asynchronous backtest function to run in a separate thread.
+    """
+    if single:
+        data = get_data(segment)
+        tickers = [segment]
+    else:
         tickers = get_all_tickers(segment)
         data = get_data_multiple_symbols(tickers)
+    try:
         all_signals = {}
         for symbol in tickers:
             try:
-                result = backtest(symbol, data)
+                result = backtest(symbol, data, single=single, chk_last_weeks=53 if single else 1)
                 all_signals[symbol] = result
                 completed_count = len(all_signals)
                 total_count = len(tickers)
@@ -117,7 +132,7 @@ def async_backtest(segment: str, process_id):
                             "completionPercent": completion_percent,
                             "completionStatus": f"In progress {completed_count}/{total_count}"
                         })
-                        print(f"Progress: {completion_percent}% ({completed_count}/{total_count})")
+                        print(f"Progress: {completion_percent}% ({completed_count}/{total_count}), Process ID: {process_id}")
             except Exception as e:
                 print(f"Error processing {symbol}: {e}")
         filtered_signals = {symbol: result for symbol, result in all_signals.items() if result and result != []}
@@ -140,20 +155,26 @@ def async_backtest(segment: str, process_id):
         })
 
 
-def run_backtests(segment: str):
+def run_backtests(segment: str, single: bool = False):
+    """
+    Run backtests for a given segment and return the process ID.
+    """
+   
     
-    process_id = get_process_id()
-    threading.Thread(target=async_backtest, args=(segment, process_id)).start()
+    process_id = get_process_id(segment)
+    threading.Thread(target=async_backtest, args=(segment, process_id, single)).start()
     
     return process_id
 
-def get_process_id():
+def get_process_id(segment):
     process_id = str(uuid.uuid4())
     # Update Firestore with initial status
     create_document("process-list", process_id, {
         "completionPercent": 0,
         "completionStatus": "Backtest started",
         "processId": process_id,
+        "segment_or_symbol": segment,
+        "startTime": datetime.datetime.now().isoformat(),
         "result": {}
     })
     
@@ -168,6 +189,8 @@ def get_backtest_status(process_id):
         "completionPercent": data.get("completionPercent"),
         "completionStatus": data.get("completionStatus"),
         "processId": data.get("processId"),
+        "segment_or_symbol": data.get("segment_or_symbol"),
+        "startTime": data.get("startTime"),
         "result": data.get("result")
     }
     
@@ -180,6 +203,6 @@ def load_tickers(file_path):
 
 # Run Backtest for Reliance Industries (NSE)
 if __name__ == "__main__":
-    process_id = get_process_id()   
-    async_backtest("nifty50", process_id) 
+    process_id = get_process_id("JSWSTEEL.NS")   
+    async_backtest("JSWSTEEL.NS", process_id, single=True) 
     print(f"Process ID: {process_id}")

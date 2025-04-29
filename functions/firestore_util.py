@@ -9,7 +9,7 @@ firestore_client = firestore.Client()
 
 def create_document(collection_name, document_id, data):
     """
-    Create a Firestore document with the provided data.
+    Create a Firestore document with the provided data and cleanup after creation.
     """
     try:
         doc_ref = firestore_client.collection(collection_name).document(document_id)
@@ -17,7 +17,11 @@ def create_document(collection_name, document_id, data):
         print(f"Document {document_id} created successfully in collection {collection_name}.")
     except Exception as e:
         print(f"Error creating document {document_id} in collection {collection_name}: {e}")
-    return doc_ref
+    finally:
+        # Cleanup: no explicit close is required for Firestore documents,
+        # but we reset the reference as part of the operation.
+        doc_ref = None
+    
 
 
 def update_document(collection_name, document_id, data):
@@ -27,10 +31,13 @@ def update_document(collection_name, document_id, data):
     try:
         doc_ref = firestore_client.collection(collection_name).document(document_id)
         doc_ref.set(data, merge=True)
-        print(f"Document {document_id} in collection {collection_name} updated successfully.")
     except Exception as e:
         print(f"Error updating document {document_id} in collection {collection_name}: {e}")
-    return doc_ref
+    finally:
+        # Cleanup: no explicit close is required for Firestore documents,
+        # but we reset the reference as part of the operation.
+        doc_ref = None
+        
 
 def get_collection(collection_name):
     """

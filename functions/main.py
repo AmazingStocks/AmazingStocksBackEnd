@@ -49,22 +49,28 @@ def tradesignals_process(process_id):
         return "Process ID not found", 404
     return status
 
+@app.route('/get-tickers/<segment>', methods=['GET'])
+def tget_tickers(segment):
+    # Call get_all_tickers with the provided segment parameter
+    tickers = tradesignals.get_all_tickers(segment)
+    # Return tickers as JSON if not already a string
+    return tickers 
 
-@app.route('/tradesignals/<segment>')
+@app.route('/tradesignals/<segment>', methods=['POST'])
 def tradesignals_segment(segment):
     # Call run_backtests with the provided segment parameter
     signals = tradesignals.run_backtests(segment)
     # Return signals as JSON if not already a string
     return signals 
 
-@app.route('/tradesignal-single/<symbol>')
+@app.route('/tradesignal-single/<symbol>', methods=['POST'])
 def tradesignal_single(symbol):
     # Call run_backtests with the provided symbol parameter
     signals = tradesignals.run_backtests(symbol, single=True)
     # Return signals as JSON if not already a string
     return signals 
 
-@app.route('/backtrade/<symbol>')
+@app.route('/backtrade/<symbol>', methods=['POST'])
 def backtrade(symbol):
     return back_trade.backtest(symbol)
 

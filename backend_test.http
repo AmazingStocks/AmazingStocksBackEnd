@@ -1,17 +1,21 @@
 ### Get Request
-GET http://127.0.0.1:5001/amazingstocks-9829a/us-central1/amazing_stocks_be/tradesignals/nifty500
+GET http://127.0.0.1:5001/amazingstocks-9829a/us-central1/amazing_stocks_be/get-tickers/nifty500
+Content-Type: application/json
+
+### Post Request
+POST http://127.0.0.1:5001/amazingstocks-9829a/us-central1/amazing_stocks_be/tradesignals/nifty500
+Content-Type: application/json
+
+### Post Request
+POST http://127.0.0.1:5001/amazingstocks-9829a/us-central1/amazing_stocks_be/tradesignal-single/SUNDARMFIN.NS
 Content-Type: application/json
 
 ### Get Request
-GET http://127.0.0.1:5001/amazingstocks-9829a/us-central1/amazing_stocks_be/tradesignal-single/JSWSTEEL.NS
+GET http://127.0.0.1:5001/amazingstocks-9829a/us-central1/amazing_stocks_be/tradesignals/getresult/2dc03d98-b2fe-49ea-9ae3-7784b8f7e18d
 Content-Type: application/json
 
-### Get Request
-GET http://127.0.0.1:5001/amazingstocks-9829a/us-central1/amazing_stocks_be/tradesignals/getresult/aefc4033-0b13-47c1-adc9-81412f2c525a
-Content-Type: application/json
-
-### Get Request
-GET http://127.0.0.1:5001/amazingstocks-9829a/us-central1/amazing_stocks_be/backtrade/HDFCBANK.NS
+### Post Request
+POST http://127.0.0.1:5001/amazingstocks-9829a/us-central1/amazing_stocks_be/backtrade/SUNDARMFIN.NS
 Content-Type: application/json
 
 ### Get Request - FirebaseFunctions

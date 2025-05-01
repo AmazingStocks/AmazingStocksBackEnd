@@ -2,7 +2,6 @@
 from firebase_admin import credentials, firestore
 
 
-cred = credentials.Certificate("serviceAccountKey.json")
 
 # Initialize Firestore client
 firestore_client = firestore.Client()

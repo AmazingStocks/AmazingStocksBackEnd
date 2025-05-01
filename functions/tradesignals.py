@@ -32,7 +32,7 @@ def get_all_tickers(segment_or_symbol : str):
 def get_data_multiple_symbols(symbols, period="1y", interval="1d"):
     data = None
     try:
-        data = yf.download(symbols,group_by='ticker', period=period, interval=interval, multi_level_index=False, progress=False)
+        data = yf.download(symbols,group_by='ticker', period=period, interval=interval, multi_level_index=False)
     except Exception as e:
         print(f"Error downloading data  {e}")
     return data

@@ -8,3 +8,4 @@ pandas
 numpy 
 matplotlib
 yahoo_fin
+psutil

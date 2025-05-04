@@ -1,0 +1,44 @@
+{
+    "completionPercent": 100,
+    "completionStatus": "Backtest completed",
+    "processId": "b0a4d286-09bd-4ef3-956c-84000935a15c",
+    "result": {
+        "BDL.NS": [
+            {
+                "date": "2025-04-30",
+                "price": 1529.5999755859375,
+                "signal_type": "BUY"
+            }
+        ],
+        "GICRE.NS": [
+            {
+                "date": "2025-04-29",
+                "price": 433.75,
+                "signal_type": "BUY"
+            }
+        ],
+        "LEMONTREE.NS": [
+            {
+                "date": "2025-04-29",
+                "price": 139.08999633789062,
+                "signal_type": "BUY"
+            }
+        ],
+        "SOLARINDS.NS": [
+            {
+                "date": "2025-04-30",
+                "price": 13172.0,
+                "signal_type": "BUY"
+            }
+        ],
+        "WIPRO.NS": [
+            {
+                "date": "2025-04-25",
+                "price": 240.89999389648438,
+                "signal_type": "SELL"
+            }
+        ]
+    },
+    "segment_or_symbol": "nifty500",
+    "startTime": "2025-05-04T03:17:56.677954"
+}

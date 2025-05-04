@@ -5,6 +5,7 @@ import matplotlib
 import time
 import json
 import uuid
+import psutil
 
 from firestore_util import create_document, update_document, get_collection, get_document, delete_document
 
@@ -12,9 +13,11 @@ from firestore_util import create_document, update_document, get_collection, get
 from TradeSignalsAnalyzer import TradeSignalsAnalyzer
 from timer_util import timeit
 from tickers_util import get_all_tickers
+from yf_to_firestore import get_data_from_firestore
+
 from tradingstrategies.MeanReversionStrategy import MeanReversionStrategy
 from tradingstrategies.MovingAverageCrossoverStrategy import MovingAverageCrossoverStrategy
-import psutil
+
 matplotlib.use("Agg")  # Use Agg backend for non-GUI environments
 import matplotlib.pyplot as plt
 
@@ -46,7 +49,7 @@ def backtest(symbol, chk_last_weeks=1):
     cerebro.addanalyzer(TradeSignalsAnalyzer, _name="tradesignals")
     
     # Load Data
-    df = get_data(symbol)
+    df = get_data_from_firestore(symbol)
    
     
     data = bt.feeds.PandasData(dataname=df)
@@ -168,6 +171,7 @@ def get_backtest_status(process_id):
 # Load tickers from a file
 # Run Backtest for Reliance Industries (NSE)
 if __name__ == "__main__":
-    process_id = get_process_id("JSWSTEEL.NS")   
-    async_backtest("JSWSTEEL.NS", process_id, single=True) 
-    print(f"Process ID: {process_id}")
+    symbol = "WIPRO.NS"    
+    process_id = get_process_id(symbol)
+    async_backtest(symbol, process_id, single=True)
+    print(get_document("process-list", process_id))

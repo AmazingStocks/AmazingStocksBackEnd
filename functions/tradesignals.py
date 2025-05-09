@@ -171,7 +171,7 @@ def get_backtest_status(process_id):
 # Load tickers from a file
 # Run Backtest for Reliance Industries (NSE)
 if __name__ == "__main__":
-    symbol = "WIPRO.NS"    
+    symbol = "nifty500"    
     process_id = get_process_id(symbol)
-    async_backtest(symbol, process_id, single=True)
+    async_backtest(symbol, process_id, single=False)
     print(get_document("process-list", process_id))

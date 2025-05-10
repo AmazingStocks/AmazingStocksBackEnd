@@ -3,7 +3,7 @@
 # Deploy with `firebase deploy`
 
 from firebase_functions import https_fn, firestore_fn    
-from firebase_admin import initialize_app, auth, credentials, firestore
+from firebase_admin import initialize_app, auth, credentials, firestore, get_app
 from flask import Flask, abort, request
 import json
 import tickers_util
@@ -11,8 +11,11 @@ import tradesignals
 import back_trade
 
 # Initialize the Firebase Admin SDK (adjust the credentials as needed)
-cred = credentials.Certificate("serviceAccountKey.json")
-initialize_app(cred)
+try:
+    get_app()
+except ValueError:
+    cred = credentials.Certificate("serviceAccountKey.json")
+    initialize_app(cred)
 
 
 from yf_to_firestore import yf_to_firestore

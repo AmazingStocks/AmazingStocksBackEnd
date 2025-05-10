@@ -127,6 +127,16 @@ def yf_to_firestore(symbol):
     
     end_date = pd.Timestamp.today().strftime('%Y-%m-%d')
     
+    # Check if there are any business days between start_date and end_date
+    # If no business days, skip the download.
+    # Note: This is a naive approach and may not account for holidays.
+    # You may want to use a library like `pandas_market_calendars` for more accurate business day calculations.
+    # For simplicity, we will use the default business day calendar.
+    business_days = pd.bdate_range(start=start_date, end=end_date)
+    if len(business_days) == 0:
+        print("No working days found between start_date and end_date. Skipping download.")
+        return
+    
     # Fetch data from Yahoo Finance
     data = get_data(symbol, start=start_date, end=end_date, interval="1d")
     

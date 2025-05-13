@@ -146,7 +146,7 @@ def yf_to_firestore(symbol):
     else:
         print(f"No new data to save for {symbol}.")
 
-def get_data_from_firestore(symbol, period="1y"):
+def get_data_from_firestore(symbol, dwnld_frm_yf=False, period="1y"):
     """
     Fetches historical data for a given stock symbol from Firestore and returns it as a
     DataFrame in the same format as yfinance.download (Date as index with columns: open, high, low, close, volume).
@@ -170,35 +170,37 @@ def get_data_from_firestore(symbol, period="1y"):
         records.append(doc.to_dict())
     
     df = pd.DataFrame(records)
-    
-    # If no data exists in Firestore, update Firestore.
-    if df.empty:
-        yf_to_firestore(symbol)
-        docs = collection_ref.stream()
-        records = [doc.to_dict() for doc in docs]
-        df = pd.DataFrame(records)
-        if df.empty:
-            return df
 
-    # Convert 'Date' back to datetime and set as index.
-    df['Date'] = pd.to_datetime(df['Date'])
-    df.set_index('Date', inplace=True)
-    df.sort_index(inplace=True)
-    
-    # Determine the last working day using business day offset.
-    last_working_day = (pd.Timestamp.today() - pd.tseries.offsets.BDay(1)).normalize()
-    if df.index.max() < last_working_day:
-        print("Data not available until last working day. Updating Firestore data...")
-        yf_to_firestore(symbol)
-        docs = collection_ref.stream()
-        records = [doc.to_dict() for doc in docs]
-        df = pd.DataFrame(records)
+    if dwnld_frm_yf:
+        # If no data exists in Firestore, update Firestore.
         if df.empty:
-            return df
+            yf_to_firestore(symbol)
+            docs = collection_ref.stream()
+            records = [doc.to_dict() for doc in docs]
+            df = pd.DataFrame(records)
+            if df.empty:
+                return df
+
+        # Convert 'Date' back to datetime and set as index.
         df['Date'] = pd.to_datetime(df['Date'])
         df.set_index('Date', inplace=True)
         df.sort_index(inplace=True)
-    
+        
+        # Determine the last working day using business day offset.
+        last_working_day = (pd.Timestamp.today() - pd.tseries.offsets.BDay(1)).normalize()
+        if df.index.max() < last_working_day:
+            print("Data not available until last working day. Updating Firestore data...")
+            yf_to_firestore(symbol)
+            docs = collection_ref.stream()
+            records = [doc.to_dict() for doc in docs]
+            df = pd.DataFrame(records)
+            if df.empty:
+                return df
+            
+    df['Date'] = pd.to_datetime(df['Date'])
+    df.set_index('Date', inplace=True)
+    df.sort_index(inplace=True)
+        
     # Ensure the DataFrame has the same columns as yfinance returns.
     desired_columns = ["open", "high", "low", "close", "volume"]
     df = df.reindex(columns=desired_columns)
